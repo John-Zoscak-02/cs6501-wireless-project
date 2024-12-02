@@ -1,0 +1,58 @@
+absl-py==2.1.0
+Brotli @ file:///home/conda/feedstock_root/build_artifacts/brotli-split_1648883617327/work
+cachetools==5.5.0
+certifi @ file:///home/conda/feedstock_root/build_artifacts/certifi_1725278078093/work/certifi
+charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1728479282467/work
+cloudpickle==2.2.1
+cycler @ file:///home/conda/feedstock_root/build_artifacts/cycler_1635519461629/work
+Cython @ file:///home/conda/feedstock_root/build_artifacts/cython_1659101942790/work
+detectron2 @ git+https://github.com/qiank10/detectron2.git@370700b01be5ce401a1803af70d3e4c0471858c5
+fonttools==4.38.0
+future==1.0.0
+fvcore==0.1.5.post20221221
+google-auth==2.36.0
+google-auth-oauthlib==0.4.6
+grpcio==1.62.3
+idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1726459485162/work
+importlib-metadata==6.7.0
+iopath==0.1.10
+kiwisolver==1.4.5
+Markdown==3.4.4
+MarkupSafe==2.1.5
+matplotlib==3.5.3
+-e git+https://github.com/qiank10/MVDNet.git@d83663df068183d1e606100adb0fc78c35f1141c#egg=mvdnet
+numpy @ file:///home/conda/feedstock_root/build_artifacts/numpy_1649806299270/work
+oauthlib==3.2.2
+opencv-python==4.6.0.66
+opencv-python-headless==4.6.0.66
+packaging==24.0
+Pillow @ file:///home/conda/feedstock_root/build_artifacts/pillow_1660385854171/work
+portalocker==2.7.0
+protobuf==3.20.3
+pyasn1==0.5.1
+pyasn1-modules==0.3.0
+pycocotools @ file:///home/conda/feedstock_root/build_artifacts/pycocotools_1661485904992/work
+pydot==2.0.0
+pyparsing @ file:///home/conda/feedstock_root/build_artifacts/pyparsing_1724616129934/work
+PySocks @ file:///home/conda/feedstock_root/build_artifacts/pysocks_1648857264451/work
+python-dateutil==2.9.0.post0
+PyYAML==6.0.1
+requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1716354486713/work
+requests-oauthlib==2.0.0
+rsa==4.9
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
+tabulate==0.9.0
+tensorboard==2.11.2
+tensorboard-data-server==0.6.1
+tensorboard-plugin-wit==1.8.1
+termcolor==2.3.0
+torch==1.7.1
+torchaudio==0.7.2
+torchvision==0.8.2
+tornado @ file:///home/conda/feedstock_root/build_artifacts/tornado_1656937818679/work
+tqdm==4.67.1
+typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1688315532570/work
+urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1708239446578/work
+Werkzeug==2.2.3
+yacs==0.1.8
+zipp==3.15.0

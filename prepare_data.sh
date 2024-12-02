@@ -31,7 +31,7 @@ unset __conda_setup
 
 conda activate mvdnet
 
-cd ~/MVDNet
+cd ~/cs6501-wireless-project
 
 # Prepare Data: 
 python data/sdk/prepare_radar_data.py --data_path /scratch/jmz9sad/2019-01-10-11-46-21-radar-oxford-10k  --image_size 320 --resolution 0.2

@@ -14379,3 +14379,4193 @@ The aliases was originally deprecated in NumPy 1.20; for more details and guidan
     https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
 
 [12/02 12:22:13] d2.engine.hooks INFO: Total training time: 0:00:00 (0:00:00 on hooks)
+[12/02 15:11:36] detectron2 INFO: Rank of current process: 0. World size: 1
+[12/02 15:11:37] detectron2 INFO: Environment info:
+------------------------  ---------------------------------------------------------------------------------------------------------------------
+sys.platform              linux
+Python                    3.10.14 (main, May  6 2024, 19:42:50) [GCC 11.2.0]
+numpy                     1.26.4
+detectron2                0.1.1 @/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2
+detectron2 compiler       GCC 11.4
+detectron2 CUDA compiler  not available
+detectron2 arch flags     /home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/_C.cpython-310-x86_64-linux-gnu.so; cannot find cuobjdump
+DETECTRON2_ENV_MODULE     <not set>
+PyTorch                   2.3.1 @/opt/conda/lib/python3.10/site-packages/torch
+PyTorch debug build       False
+CUDA available            True
+GPU 0                     NVIDIA RTX A6000
+CUDA_HOME                 /apps/software/standard/core/cuda/11.8.0
+Pillow                    9.0.0
+torchvision               0.18.1 @/opt/conda/lib/python3.10/site-packages/torchvision
+torchvision arch flags    /opt/conda/lib/python3.10/site-packages/torchvision/_C.so; cannot find cuobjdump
+------------------------  ---------------------------------------------------------------------------------------------------------------------
+PyTorch built with:
+  - GCC 9.3
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2023.1-Product Build 20230303 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.3.6 (Git Hash 86e6af5974177e513fd3fee58425e1063e7f1361)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.8
+  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_37,code=compute_37
+  - CuDNN 8.7
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.8, CUDNN_VERSION=8.7.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=2.3.1, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, 
+
+[12/02 15:11:37] detectron2 INFO: Command line arguments: Namespace(config_file='./configs/train_config.yaml', resume=False, eval_only=False, num_gpus=1, num_machines=1, machine_rank=0, dist_url='tcp://127.0.0.1:55975', opts=[])
+[12/02 15:11:37] detectron2 INFO: Contents of args.config_file=./configs/train_config.yaml:
+INPUT:
+  EVAL_BETA: 0.0
+  HISTORY_ON: True
+  NUM_HISTORY: 4
+  LIDAR:
+    FOG:
+      G: 0.45
+      N: 0.02
+      D_MIN: 2
+      FRACTION_RANDOM: 0.05
+      FOG_RATIO: 0.5
+      BETA_RANGE: [0.005, 0.08]
+    PROJECTION:
+      DELTA_L: 0.2
+      PIXEL_L: 320
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      DELTA_H: 0.1
+MODEL:
+  META_ARCHITECTURE: "MVDNet"
+  BACKBONE:
+    NAME: build_mvdnet_backbone
+  MVDNET:
+    STEM_OUT_CHANNELS: 32
+    STAGE_LAYERS: [3,3]
+    RADAR_STAGE_OUT_CHANNELS: [32,64]
+    LIDAR_STAGE_OUT_CHANNELS: [64,128]
+    RADAR_NORM: "BN"
+    LIDAR_NORM: "BN"
+  ANCHOR_GENERATOR:
+    NAME: RotatedAnchorGenerator
+    ANGLES: [[-90, -45, 0, 45]]
+    SIZES: [[26]] # Pixels
+    ASPECT_RATIOS: [[2]]
+  PROPOSAL_GENERATOR:
+    NAME: MVDNetRRPN
+    MIN_SIZE: 2
+  RPN:
+    BBOX_REG_WEIGHTS: (1,1,1,1,1)
+    IN_FEATURES: ["radar_rpn", "lidar_rpn"]
+    PRE_NMS_TOPK_TRAIN: 6000
+    PRE_NMS_TOPK_TEST: 3000
+    POST_NMS_TOPK_TRAIN: 1000
+    POST_NMS_TOPK_TEST: 500
+    IOU_THRESHOLDS: [0.45, 0.55]
+  ROI_HEADS:
+    NAME: MVDNetROIHeads
+    IN_FEATURES: ["radar_rcnn", "lidar_rcnn"]
+    BATCH_SIZE_PER_IMAGE: 256
+    NUM_CLASSES: 1
+    NMS_THRESH_TEST: 0.2
+    SCORE_THRESH_TEST: 0.1
+  ROI_BOX_HEAD:
+    NAME: MVDNetBoxHead
+    POOLER_TYPE: ROIAlignRotated
+    BBOX_REG_WEIGHTS: (10,10,5,5,1)
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+DATASETS:
+  TRAIN: ("robotcar_train",)
+  TEST: ("robotcar_eval",)
+SOLVER:
+  IMS_PER_BATCH: 1
+  BASE_LR: 0.01
+  MAX_ITER: 120000
+  STEPS: (40000,80000)
+  CHECKPOINT_PERIOD: 10000
+OUTPUT_DIR: ./output/mvdnet/
+
+[12/02 15:11:37] detectron2 INFO: Running with full config:
+CUDNN_BENCHMARK: False
+DATALOADER:
+  ASPECT_RATIO_GROUPING: True
+  FILTER_EMPTY_ANNOTATIONS: True
+  NUM_WORKERS: 4
+  REPEAT_THRESHOLD: 0.0
+  SAMPLER_TRAIN: TrainingSampler
+DATASETS:
+  PRECOMPUTED_PROPOSAL_TOPK_TEST: 1000
+  PRECOMPUTED_PROPOSAL_TOPK_TRAIN: 2000
+  PROPOSAL_FILES_TEST: ()
+  PROPOSAL_FILES_TRAIN: ()
+  TEST: ('robotcar_eval',)
+  TRAIN: ('robotcar_train',)
+GLOBAL:
+  HACK: 1.0
+INPUT:
+  CROP:
+    ENABLED: False
+    SIZE: [0.9, 0.9]
+    TYPE: relative_range
+  EVAL_BETA: 0.0
+  FORMAT: BGR
+  HISTORY_ON: True
+  LIDAR:
+    FOG:
+      BETA_RANGE: [0.005, 0.08]
+      D_MIN: 2
+      FOG_RATIO: 0.5
+      FRACTION_RANDOM: 0.05
+      G: 0.45
+      N: 0.02
+    PROJECTION:
+      DELTA_H: 0.1
+      DELTA_L: 0.2
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      PIXEL_L: 320
+  MASK_FORMAT: polygon
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: (800,)
+  MIN_SIZE_TRAIN_SAMPLING: choice
+  NUM_HISTORY: 4
+MODEL:
+  ANCHOR_GENERATOR:
+    ANGLES: [[-90, -45, 0, 45]]
+    ASPECT_RATIOS: [[2]]
+    NAME: RotatedAnchorGenerator
+    OFFSET: 0.0
+    SIZES: [[26]]
+  BACKBONE:
+    FREEZE_AT: 2
+    NAME: build_mvdnet_backbone
+  DEVICE: cuda
+  FPN:
+    FUSE_TYPE: sum
+    IN_FEATURES: []
+    NORM: 
+    OUT_CHANNELS: 256
+  KEYPOINT_ON: False
+  LOAD_PROPOSALS: False
+  MASK_ON: False
+  META_ARCHITECTURE: MVDNet
+  MVDNET:
+    LIDAR_NORM: BN
+    LIDAR_STAGE_OUT_CHANNELS: [64, 128]
+    RADAR_NORM: BN
+    RADAR_STAGE_OUT_CHANNELS: [32, 64]
+    STAGE_LAYERS: [3, 3]
+    STEM_OUT_CHANNELS: 32
+  PANOPTIC_FPN:
+    COMBINE:
+      ENABLED: True
+      INSTANCES_CONFIDENCE_THRESH: 0.5
+      OVERLAP_THRESH: 0.5
+      STUFF_AREA_LIMIT: 4096
+    INSTANCE_LOSS_WEIGHT: 1.0
+  PIXEL_MEAN: [103.53, 116.28, 123.675]
+  PIXEL_STD: [1.0, 1.0, 1.0]
+  PROPOSAL_GENERATOR:
+    MIN_SIZE: 2
+    NAME: MVDNetRRPN
+  RESNETS:
+    DEFORM_MODULATED: False
+    DEFORM_NUM_GROUPS: 1
+    DEFORM_ON_PER_STAGE: [False, False, False, False]
+    DEPTH: 50
+    NORM: FrozenBN
+    NUM_GROUPS: 1
+    OUT_FEATURES: ['res4']
+    RES2_OUT_CHANNELS: 256
+    RES5_DILATION: 1
+    STEM_OUT_CHANNELS: 64
+    STRIDE_IN_1X1: True
+    WIDTH_PER_GROUP: 64
+  RETINANET:
+    BBOX_REG_WEIGHTS: (1.0, 1.0, 1.0, 1.0)
+    FOCAL_LOSS_ALPHA: 0.25
+    FOCAL_LOSS_GAMMA: 2.0
+    IN_FEATURES: ['p3', 'p4', 'p5', 'p6', 'p7']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.4, 0.5]
+    NMS_THRESH_TEST: 0.5
+    NUM_CLASSES: 80
+    NUM_CONVS: 4
+    PRIOR_PROB: 0.01
+    SCORE_THRESH_TEST: 0.05
+    SMOOTH_L1_LOSS_BETA: 0.1
+    TOPK_CANDIDATES_TEST: 1000
+  ROI_BOX_CASCADE_HEAD:
+    BBOX_REG_WEIGHTS: ((10.0, 10.0, 5.0, 5.0), (20.0, 20.0, 10.0, 10.0), (30.0, 30.0, 15.0, 15.0))
+    IOUS: (0.5, 0.6, 0.7)
+  ROI_BOX_HEAD:
+    BBOX_REG_WEIGHTS: (10, 10, 5, 5, 1)
+    CLS_AGNOSTIC_BBOX_REG: False
+    CONV_DIM: 256
+    FC_DIM: 1024
+    NAME: MVDNetBoxHead
+    NORM: 
+    NUM_CONV: 0
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignRotated
+    SMOOTH_L1_BETA: 0.0
+    TRAIN_ON_PRED_BOXES: False
+  ROI_HEADS:
+    BATCH_SIZE_PER_IMAGE: 256
+    IN_FEATURES: ['radar_rcnn', 'lidar_rcnn']
+    IOU_LABELS: [0, 1]
+    IOU_THRESHOLDS: [0.5]
+    NAME: MVDNetROIHeads
+    NMS_THRESH_TEST: 0.2
+    NUM_CLASSES: 1
+    POSITIVE_FRACTION: 0.25
+    PROPOSAL_APPEND_GT: True
+    SCORE_THRESH_TEST: 0.1
+  ROI_KEYPOINT_HEAD:
+    CONV_DIMS: (512, 512, 512, 512, 512, 512, 512, 512)
+    LOSS_WEIGHT: 1.0
+    MIN_KEYPOINTS_PER_IMAGE: 1
+    NAME: KRCNNConvDeconvUpsampleHead
+    NORMALIZE_LOSS_BY_VISIBLE_KEYPOINTS: True
+    NUM_KEYPOINTS: 17
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  ROI_MASK_HEAD:
+    CLS_AGNOSTIC_MASK: False
+    CONV_DIM: 256
+    NAME: MaskRCNNConvUpsampleHead
+    NORM: 
+    NUM_CONV: 0
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  RPN:
+    BATCH_SIZE_PER_IMAGE: 256
+    BBOX_REG_WEIGHTS: (1, 1, 1, 1, 1)
+    BOUNDARY_THRESH: -1
+    HEAD_NAME: StandardRPNHead
+    IN_FEATURES: ['radar_rpn', 'lidar_rpn']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.45, 0.55]
+    LOSS_WEIGHT: 1.0
+    NMS_THRESH: 0.7
+    POSITIVE_FRACTION: 0.5
+    POST_NMS_TOPK_TEST: 500
+    POST_NMS_TOPK_TRAIN: 1000
+    PRE_NMS_TOPK_TEST: 3000
+    PRE_NMS_TOPK_TRAIN: 6000
+    SMOOTH_L1_BETA: 0.0
+  SEM_SEG_HEAD:
+    COMMON_STRIDE: 4
+    CONVS_DIM: 128
+    IGNORE_VALUE: 255
+    IN_FEATURES: ['p2', 'p3', 'p4', 'p5']
+    LOSS_WEIGHT: 1.0
+    NAME: SemSegFPNHead
+    NORM: GN
+    NUM_CLASSES: 54
+  WEIGHTS: 
+OUTPUT_DIR: ./output/mvdnet/
+SEED: -1
+SOLVER:
+  BASE_LR: 0.01
+  BIAS_LR_FACTOR: 1.0
+  CHECKPOINT_PERIOD: 10000
+  CLIP_GRADIENTS:
+    CLIP_TYPE: value
+    CLIP_VALUE: 1.0
+    ENABLED: False
+    NORM_TYPE: 2.0
+  GAMMA: 0.1
+  IMS_PER_BATCH: 1
+  LR_SCHEDULER_NAME: WarmupMultiStepLR
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  STEPS: (40000, 80000)
+  WARMUP_FACTOR: 0.001
+  WARMUP_ITERS: 1000
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0001
+  WEIGHT_DECAY_BIAS: 0.0001
+  WEIGHT_DECAY_NORM: 0.0
+TEST:
+  AUG:
+    ENABLED: False
+    FLIP: True
+    MAX_SIZE: 4000
+    MIN_SIZES: (400, 500, 600, 700, 800, 900, 1000, 1100, 1200)
+  DETECTIONS_PER_IMAGE: 100
+  EVAL_PERIOD: 0
+  EXPECTED_RESULTS: []
+  KEYPOINT_OKS_SIGMAS: []
+  PRECISE_BN:
+    ENABLED: False
+    NUM_ITER: 200
+VERSION: 2
+VIS_PERIOD: 0
+[12/02 15:11:37] detectron2 INFO: Full config saved to ./output/mvdnet/config.yaml
+[12/02 15:11:37] d2.utils.env INFO: Using a generated random seed 37868880
+[12/02 15:11:37] d2.engine.defaults INFO: Model:
+MVDNet(
+  (backbone): MVDNetBackbone(
+    (radar_backbone): VGG(
+      (stem): MVDNetStem(
+        (conv1): Conv2d(
+          1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): FrozenBatchNorm2d(num_features=32, eps=1e-05)
+        )
+      )
+      (down1): Sequential(
+        (0): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (down2): Sequential(
+        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (1): Conv2d(
+          32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (3): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (up1): ConvTranspose2d(
+        64, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fusion1): Conv2d(
+        64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (final_fusion): Conv2d(
+        160, 32, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (lidar_backbone): VGG(
+      (stem): MVDNetStem(
+        (conv1): Conv2d(
+          36, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): FrozenBatchNorm2d(num_features=32, eps=1e-05)
+        )
+      )
+      (down1): Sequential(
+        (0): Conv2d(
+          32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (down2): Sequential(
+        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (1): Conv2d(
+          64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (3): Conv2d(
+          128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (up1): ConvTranspose2d(
+        128, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fusion1): Conv2d(
+        128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (final_fusion): Conv2d(
+        320, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (proposal_generator): MVDNetRRPN(
+    (radar_rpn_anchor_generator): RotatedAnchorGenerator(
+      (cell_anchors): BufferList()
+    )
+    (lidar_rpn_anchor_generator): RotatedAnchorGenerator(
+      (cell_anchors): BufferList()
+    )
+    (radar_rpn_rpn_head): StandardRPNHead(
+      (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (objectness_logits): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1))
+      (anchor_deltas): Conv2d(32, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (lidar_rpn_rpn_head): StandardRPNHead(
+      (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (objectness_logits): Conv2d(64, 4, kernel_size=(1, 1), stride=(1, 1))
+      (anchor_deltas): Conv2d(64, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+  (roi_heads): MVDNetROIHeads(
+    (box_pooler): ROIPooler(
+      (level_poolers): ModuleList(
+        (0): ROIAlignRotated(output_size=(7, 7), spatial_scale=1.0, sampling_ratio=0)
+      )
+    )
+    (box_head): MVDNetBoxHead(
+      (match_conv): Conv2d(
+        64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (radar_self_attention): SelfAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (lidar_self_attention): SelfAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (radar_cross_attention): CrossAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (lidar_cross_attention): CrossAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (tnn1): Conv3d(
+        64, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (tnn2): Conv3d(
+        32, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (tnn3): Conv3d(
+        32, 32, kernel_size=(5, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fc1): Linear(in_features=1568, out_features=1024, bias=True)
+      (fc2): Linear(in_features=1024, out_features=1024, bias=True)
+    )
+    (box_predictor): FastRCNNOutputLayers(
+      (cls_score): Linear(in_features=1024, out_features=2, bias=True)
+      (bbox_pred): Linear(in_features=1024, out_features=5, bias=True)
+    )
+    (direct_predictor): MVDNetRCNNOutputLayers(
+      (direct_score): Linear(in_features=1024, out_features=2, bias=True)
+    )
+  )
+)
+[12/02 15:11:40] d2.data.build INFO: Removed 367 images with no usable annotations. 6697 images left.
+[12/02 15:11:40] d2.data.build INFO: Distribution of instances among all 1 categories:
+|  category  | #instances   |
+|:----------:|:-------------|
+|    car     | 42928        |
+|            |              |
+[12/02 15:11:40] d2.data.common INFO: Serializing 6697 elements to byte tensors and concatenating them all ...
+[12/02 15:11:40] d2.data.common INFO: Serialized dataset takes 4.72 MiB
+[12/02 15:11:40] d2.data.build INFO: Using training sampler TrainingSampler
+[12/02 15:11:41] fvcore.common.checkpoint INFO: No checkpoint found. Initializing model from scratch
+[12/02 15:11:41] d2.engine.train_loop INFO: Starting training from iteration 0
+[12/02 15:11:42] d2.engine.train_loop ERROR: Exception during training:
+Traceback (most recent call last):
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/engine/train_loop.py", line 132, in train
+    self.run_step()
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/engine/train_loop.py", line 209, in run_step
+    data = next(self._data_loader_iter)
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/data/common.py", line 140, in __iter__
+    for d in self.dataset:
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 631, in __next__
+    data = self._next_data()
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1346, in _next_data
+    return self._process_data(data)
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1372, in _process_data
+    data.reraise()
+  File "/opt/conda/lib/python3.10/site-packages/torch/_utils.py", line 705, in reraise
+    raise exception
+AttributeError: Caught AttributeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/data/common.py", line 41, in __getitem__
+    data = self._map_func(self._dataset[cur_idx])
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/utils/serialize.py", line 23, in __call__
+    return self._obj(*args, **kwargs)
+  File "/home/jmz9sad/cs6501-wireless-project/mvdnet/data/robotcar_mapper.py", line 81, in __call__
+    lidar_intensity, lidar_occupancy = lidar_pc2pixor(
+  File "/home/jmz9sad/cs6501-wireless-project/mvdnet/data/robotcar_utils.py", line 148, in lidar_pc2pixor
+    pixel_h = np.int(np.round((h2 - h1) / delta_h))
+  File "/opt/conda/lib/python3.10/site-packages/numpy/__init__.py", line 324, in __getattr__
+    raise AttributeError(__former_attrs__[attr])
+AttributeError: module 'numpy' has no attribute 'int'.
+`np.int` was a deprecated alias for the builtin `int`. To avoid this error in existing code, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+The aliases was originally deprecated in NumPy 1.20; for more details and guidance see the original release note at:
+    https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+
+[12/02 15:11:42] d2.engine.hooks INFO: Total training time: 0:00:00 (0:00:00 on hooks)
+[12/02 16:00:52] detectron2 INFO: Rank of current process: 0. World size: 1
+[12/02 16:00:52] detectron2 INFO: Environment info:
+------------------------  ---------------------------------------------------------------------------------------------------------------------
+sys.platform              linux
+Python                    3.10.14 (main, May  6 2024, 19:42:50) [GCC 11.2.0]
+numpy                     1.26.4
+detectron2                0.1.1 @/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2
+detectron2 compiler       GCC 11.4
+detectron2 CUDA compiler  not available
+detectron2 arch flags     /home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/_C.cpython-310-x86_64-linux-gnu.so; cannot find cuobjdump
+DETECTRON2_ENV_MODULE     <not set>
+PyTorch                   2.3.1 @/opt/conda/lib/python3.10/site-packages/torch
+PyTorch debug build       False
+CUDA available            True
+GPU 0                     NVIDIA RTX A6000
+CUDA_HOME                 /apps/software/standard/core/cuda/11.8.0
+Pillow                    9.0.0
+torchvision               0.18.1 @/opt/conda/lib/python3.10/site-packages/torchvision
+torchvision arch flags    /opt/conda/lib/python3.10/site-packages/torchvision/_C.so; cannot find cuobjdump
+------------------------  ---------------------------------------------------------------------------------------------------------------------
+PyTorch built with:
+  - GCC 9.3
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2023.1-Product Build 20230303 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.3.6 (Git Hash 86e6af5974177e513fd3fee58425e1063e7f1361)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.8
+  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_37,code=compute_37
+  - CuDNN 8.7
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.8, CUDNN_VERSION=8.7.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=2.3.1, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, 
+
+[12/02 16:00:52] detectron2 INFO: Command line arguments: Namespace(config_file='./configs/train_config.yaml', resume=False, eval_only=False, num_gpus=1, num_machines=1, machine_rank=0, dist_url='tcp://127.0.0.1:55975', opts=[])
+[12/02 16:00:52] detectron2 INFO: Contents of args.config_file=./configs/train_config.yaml:
+INPUT:
+  EVAL_BETA: 0.0
+  HISTORY_ON: True
+  NUM_HISTORY: 4
+  LIDAR:
+    FOG:
+      G: 0.45
+      N: 0.02
+      D_MIN: 2
+      FRACTION_RANDOM: 0.05
+      FOG_RATIO: 0.5
+      BETA_RANGE: [0.005, 0.08]
+    PROJECTION:
+      DELTA_L: 0.2
+      PIXEL_L: 320
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      DELTA_H: 0.1
+MODEL:
+  META_ARCHITECTURE: "MVDNet"
+  BACKBONE:
+    NAME: build_mvdnet_backbone
+  MVDNET:
+    STEM_OUT_CHANNELS: 32
+    STAGE_LAYERS: [3,3]
+    RADAR_STAGE_OUT_CHANNELS: [32,64]
+    LIDAR_STAGE_OUT_CHANNELS: [64,128]
+    RADAR_NORM: "BN"
+    LIDAR_NORM: "BN"
+  ANCHOR_GENERATOR:
+    NAME: RotatedAnchorGenerator
+    ANGLES: [[-90, -45, 0, 45]]
+    SIZES: [[26]] # Pixels
+    ASPECT_RATIOS: [[2]]
+  PROPOSAL_GENERATOR:
+    NAME: MVDNetRRPN
+    MIN_SIZE: 2
+  RPN:
+    BBOX_REG_WEIGHTS: (1,1,1,1,1)
+    IN_FEATURES: ["radar_rpn", "lidar_rpn"]
+    PRE_NMS_TOPK_TRAIN: 6000
+    PRE_NMS_TOPK_TEST: 3000
+    POST_NMS_TOPK_TRAIN: 1000
+    POST_NMS_TOPK_TEST: 500
+    IOU_THRESHOLDS: [0.45, 0.55]
+  ROI_HEADS:
+    NAME: MVDNetROIHeads
+    IN_FEATURES: ["radar_rcnn", "lidar_rcnn"]
+    BATCH_SIZE_PER_IMAGE: 256
+    NUM_CLASSES: 1
+    NMS_THRESH_TEST: 0.2
+    SCORE_THRESH_TEST: 0.1
+  ROI_BOX_HEAD:
+    NAME: MVDNetBoxHead
+    POOLER_TYPE: ROIAlignRotated
+    BBOX_REG_WEIGHTS: (10,10,5,5,1)
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+DATASETS:
+  TRAIN: ("robotcar_train",)
+  TEST: ("robotcar_eval",)
+SOLVER:
+  IMS_PER_BATCH: 1
+  BASE_LR: 0.01
+  MAX_ITER: 120000
+  STEPS: (40000,80000)
+  CHECKPOINT_PERIOD: 10000
+OUTPUT_DIR: ./output/mvdnet/
+
+[12/02 16:00:52] detectron2 INFO: Running with full config:
+CUDNN_BENCHMARK: False
+DATALOADER:
+  ASPECT_RATIO_GROUPING: True
+  FILTER_EMPTY_ANNOTATIONS: True
+  NUM_WORKERS: 4
+  REPEAT_THRESHOLD: 0.0
+  SAMPLER_TRAIN: TrainingSampler
+DATASETS:
+  PRECOMPUTED_PROPOSAL_TOPK_TEST: 1000
+  PRECOMPUTED_PROPOSAL_TOPK_TRAIN: 2000
+  PROPOSAL_FILES_TEST: ()
+  PROPOSAL_FILES_TRAIN: ()
+  TEST: ('robotcar_eval',)
+  TRAIN: ('robotcar_train',)
+GLOBAL:
+  HACK: 1.0
+INPUT:
+  CROP:
+    ENABLED: False
+    SIZE: [0.9, 0.9]
+    TYPE: relative_range
+  EVAL_BETA: 0.0
+  FORMAT: BGR
+  HISTORY_ON: True
+  LIDAR:
+    FOG:
+      BETA_RANGE: [0.005, 0.08]
+      D_MIN: 2
+      FOG_RATIO: 0.5
+      FRACTION_RANDOM: 0.05
+      G: 0.45
+      N: 0.02
+    PROJECTION:
+      DELTA_H: 0.1
+      DELTA_L: 0.2
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      PIXEL_L: 320
+  MASK_FORMAT: polygon
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: (800,)
+  MIN_SIZE_TRAIN_SAMPLING: choice
+  NUM_HISTORY: 4
+MODEL:
+  ANCHOR_GENERATOR:
+    ANGLES: [[-90, -45, 0, 45]]
+    ASPECT_RATIOS: [[2]]
+    NAME: RotatedAnchorGenerator
+    OFFSET: 0.0
+    SIZES: [[26]]
+  BACKBONE:
+    FREEZE_AT: 2
+    NAME: build_mvdnet_backbone
+  DEVICE: cuda
+  FPN:
+    FUSE_TYPE: sum
+    IN_FEATURES: []
+    NORM: 
+    OUT_CHANNELS: 256
+  KEYPOINT_ON: False
+  LOAD_PROPOSALS: False
+  MASK_ON: False
+  META_ARCHITECTURE: MVDNet
+  MVDNET:
+    LIDAR_NORM: BN
+    LIDAR_STAGE_OUT_CHANNELS: [64, 128]
+    RADAR_NORM: BN
+    RADAR_STAGE_OUT_CHANNELS: [32, 64]
+    STAGE_LAYERS: [3, 3]
+    STEM_OUT_CHANNELS: 32
+  PANOPTIC_FPN:
+    COMBINE:
+      ENABLED: True
+      INSTANCES_CONFIDENCE_THRESH: 0.5
+      OVERLAP_THRESH: 0.5
+      STUFF_AREA_LIMIT: 4096
+    INSTANCE_LOSS_WEIGHT: 1.0
+  PIXEL_MEAN: [103.53, 116.28, 123.675]
+  PIXEL_STD: [1.0, 1.0, 1.0]
+  PROPOSAL_GENERATOR:
+    MIN_SIZE: 2
+    NAME: MVDNetRRPN
+  RESNETS:
+    DEFORM_MODULATED: False
+    DEFORM_NUM_GROUPS: 1
+    DEFORM_ON_PER_STAGE: [False, False, False, False]
+    DEPTH: 50
+    NORM: FrozenBN
+    NUM_GROUPS: 1
+    OUT_FEATURES: ['res4']
+    RES2_OUT_CHANNELS: 256
+    RES5_DILATION: 1
+    STEM_OUT_CHANNELS: 64
+    STRIDE_IN_1X1: True
+    WIDTH_PER_GROUP: 64
+  RETINANET:
+    BBOX_REG_WEIGHTS: (1.0, 1.0, 1.0, 1.0)
+    FOCAL_LOSS_ALPHA: 0.25
+    FOCAL_LOSS_GAMMA: 2.0
+    IN_FEATURES: ['p3', 'p4', 'p5', 'p6', 'p7']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.4, 0.5]
+    NMS_THRESH_TEST: 0.5
+    NUM_CLASSES: 80
+    NUM_CONVS: 4
+    PRIOR_PROB: 0.01
+    SCORE_THRESH_TEST: 0.05
+    SMOOTH_L1_LOSS_BETA: 0.1
+    TOPK_CANDIDATES_TEST: 1000
+  ROI_BOX_CASCADE_HEAD:
+    BBOX_REG_WEIGHTS: ((10.0, 10.0, 5.0, 5.0), (20.0, 20.0, 10.0, 10.0), (30.0, 30.0, 15.0, 15.0))
+    IOUS: (0.5, 0.6, 0.7)
+  ROI_BOX_HEAD:
+    BBOX_REG_WEIGHTS: (10, 10, 5, 5, 1)
+    CLS_AGNOSTIC_BBOX_REG: False
+    CONV_DIM: 256
+    FC_DIM: 1024
+    NAME: MVDNetBoxHead
+    NORM: 
+    NUM_CONV: 0
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignRotated
+    SMOOTH_L1_BETA: 0.0
+    TRAIN_ON_PRED_BOXES: False
+  ROI_HEADS:
+    BATCH_SIZE_PER_IMAGE: 256
+    IN_FEATURES: ['radar_rcnn', 'lidar_rcnn']
+    IOU_LABELS: [0, 1]
+    IOU_THRESHOLDS: [0.5]
+    NAME: MVDNetROIHeads
+    NMS_THRESH_TEST: 0.2
+    NUM_CLASSES: 1
+    POSITIVE_FRACTION: 0.25
+    PROPOSAL_APPEND_GT: True
+    SCORE_THRESH_TEST: 0.1
+  ROI_KEYPOINT_HEAD:
+    CONV_DIMS: (512, 512, 512, 512, 512, 512, 512, 512)
+    LOSS_WEIGHT: 1.0
+    MIN_KEYPOINTS_PER_IMAGE: 1
+    NAME: KRCNNConvDeconvUpsampleHead
+    NORMALIZE_LOSS_BY_VISIBLE_KEYPOINTS: True
+    NUM_KEYPOINTS: 17
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  ROI_MASK_HEAD:
+    CLS_AGNOSTIC_MASK: False
+    CONV_DIM: 256
+    NAME: MaskRCNNConvUpsampleHead
+    NORM: 
+    NUM_CONV: 0
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  RPN:
+    BATCH_SIZE_PER_IMAGE: 256
+    BBOX_REG_WEIGHTS: (1, 1, 1, 1, 1)
+    BOUNDARY_THRESH: -1
+    HEAD_NAME: StandardRPNHead
+    IN_FEATURES: ['radar_rpn', 'lidar_rpn']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.45, 0.55]
+    LOSS_WEIGHT: 1.0
+    NMS_THRESH: 0.7
+    POSITIVE_FRACTION: 0.5
+    POST_NMS_TOPK_TEST: 500
+    POST_NMS_TOPK_TRAIN: 1000
+    PRE_NMS_TOPK_TEST: 3000
+    PRE_NMS_TOPK_TRAIN: 6000
+    SMOOTH_L1_BETA: 0.0
+  SEM_SEG_HEAD:
+    COMMON_STRIDE: 4
+    CONVS_DIM: 128
+    IGNORE_VALUE: 255
+    IN_FEATURES: ['p2', 'p3', 'p4', 'p5']
+    LOSS_WEIGHT: 1.0
+    NAME: SemSegFPNHead
+    NORM: GN
+    NUM_CLASSES: 54
+  WEIGHTS: 
+OUTPUT_DIR: ./output/mvdnet/
+SEED: -1
+SOLVER:
+  BASE_LR: 0.01
+  BIAS_LR_FACTOR: 1.0
+  CHECKPOINT_PERIOD: 10000
+  CLIP_GRADIENTS:
+    CLIP_TYPE: value
+    CLIP_VALUE: 1.0
+    ENABLED: False
+    NORM_TYPE: 2.0
+  GAMMA: 0.1
+  IMS_PER_BATCH: 1
+  LR_SCHEDULER_NAME: WarmupMultiStepLR
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  STEPS: (40000, 80000)
+  WARMUP_FACTOR: 0.001
+  WARMUP_ITERS: 1000
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0001
+  WEIGHT_DECAY_BIAS: 0.0001
+  WEIGHT_DECAY_NORM: 0.0
+TEST:
+  AUG:
+    ENABLED: False
+    FLIP: True
+    MAX_SIZE: 4000
+    MIN_SIZES: (400, 500, 600, 700, 800, 900, 1000, 1100, 1200)
+  DETECTIONS_PER_IMAGE: 100
+  EVAL_PERIOD: 0
+  EXPECTED_RESULTS: []
+  KEYPOINT_OKS_SIGMAS: []
+  PRECISE_BN:
+    ENABLED: False
+    NUM_ITER: 200
+VERSION: 2
+VIS_PERIOD: 0
+[12/02 16:00:52] detectron2 INFO: Full config saved to ./output/mvdnet/config.yaml
+[12/02 16:00:52] d2.utils.env INFO: Using a generated random seed 53283862
+[12/02 16:00:53] d2.engine.defaults INFO: Model:
+MVDNet(
+  (backbone): MVDNetBackbone(
+    (radar_backbone): VGG(
+      (stem): MVDNetStem(
+        (conv1): Conv2d(
+          1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): FrozenBatchNorm2d(num_features=32, eps=1e-05)
+        )
+      )
+      (down1): Sequential(
+        (0): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (down2): Sequential(
+        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (1): Conv2d(
+          32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (3): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (up1): ConvTranspose2d(
+        64, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fusion1): Conv2d(
+        64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (final_fusion): Conv2d(
+        160, 32, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (lidar_backbone): VGG(
+      (stem): MVDNetStem(
+        (conv1): Conv2d(
+          36, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): FrozenBatchNorm2d(num_features=32, eps=1e-05)
+        )
+      )
+      (down1): Sequential(
+        (0): Conv2d(
+          32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (down2): Sequential(
+        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (1): Conv2d(
+          64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (3): Conv2d(
+          128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (up1): ConvTranspose2d(
+        128, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fusion1): Conv2d(
+        128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (final_fusion): Conv2d(
+        320, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (proposal_generator): MVDNetRRPN(
+    (radar_rpn_anchor_generator): RotatedAnchorGenerator(
+      (cell_anchors): BufferList()
+    )
+    (lidar_rpn_anchor_generator): RotatedAnchorGenerator(
+      (cell_anchors): BufferList()
+    )
+    (radar_rpn_rpn_head): StandardRPNHead(
+      (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (objectness_logits): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1))
+      (anchor_deltas): Conv2d(32, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (lidar_rpn_rpn_head): StandardRPNHead(
+      (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (objectness_logits): Conv2d(64, 4, kernel_size=(1, 1), stride=(1, 1))
+      (anchor_deltas): Conv2d(64, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+  (roi_heads): MVDNetROIHeads(
+    (box_pooler): ROIPooler(
+      (level_poolers): ModuleList(
+        (0): ROIAlignRotated(output_size=(7, 7), spatial_scale=1.0, sampling_ratio=0)
+      )
+    )
+    (box_head): MVDNetBoxHead(
+      (match_conv): Conv2d(
+        64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (radar_self_attention): SelfAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (lidar_self_attention): SelfAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (radar_cross_attention): CrossAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (lidar_cross_attention): CrossAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (tnn1): Conv3d(
+        64, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (tnn2): Conv3d(
+        32, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (tnn3): Conv3d(
+        32, 32, kernel_size=(5, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fc1): Linear(in_features=1568, out_features=1024, bias=True)
+      (fc2): Linear(in_features=1024, out_features=1024, bias=True)
+    )
+    (box_predictor): FastRCNNOutputLayers(
+      (cls_score): Linear(in_features=1024, out_features=2, bias=True)
+      (bbox_pred): Linear(in_features=1024, out_features=5, bias=True)
+    )
+    (direct_predictor): MVDNetRCNNOutputLayers(
+      (direct_score): Linear(in_features=1024, out_features=2, bias=True)
+    )
+  )
+)
+[12/02 16:00:55] d2.data.build INFO: Removed 367 images with no usable annotations. 6697 images left.
+[12/02 16:00:55] d2.data.build INFO: Distribution of instances among all 1 categories:
+|  category  | #instances   |
+|:----------:|:-------------|
+|    car     | 42928        |
+|            |              |
+[12/02 16:00:55] d2.data.common INFO: Serializing 6697 elements to byte tensors and concatenating them all ...
+[12/02 16:00:56] d2.data.common INFO: Serialized dataset takes 4.72 MiB
+[12/02 16:00:56] d2.data.build INFO: Using training sampler TrainingSampler
+[12/02 16:00:56] fvcore.common.checkpoint INFO: No checkpoint found. Initializing model from scratch
+[12/02 16:00:56] d2.engine.train_loop INFO: Starting training from iteration 0
+[12/02 16:00:57] d2.engine.train_loop ERROR: Exception during training:
+Traceback (most recent call last):
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/engine/train_loop.py", line 132, in train
+    self.run_step()
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/engine/train_loop.py", line 209, in run_step
+    data = next(self._data_loader_iter)
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/data/common.py", line 140, in __iter__
+    for d in self.dataset:
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 631, in __next__
+    data = self._next_data()
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1346, in _next_data
+    return self._process_data(data)
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1372, in _process_data
+    data.reraise()
+  File "/opt/conda/lib/python3.10/site-packages/torch/_utils.py", line 705, in reraise
+    raise exception
+AttributeError: Caught AttributeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/opt/conda/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/data/common.py", line 41, in __getitem__
+    data = self._map_func(self._dataset[cur_idx])
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/utils/serialize.py", line 23, in __call__
+    return self._obj(*args, **kwargs)
+  File "/home/jmz9sad/cs6501-wireless-project/mvdnet/data/robotcar_mapper.py", line 81, in __call__
+    lidar_intensity, lidar_occupancy = lidar_pc2pixor(
+  File "/home/jmz9sad/cs6501-wireless-project/mvdnet/data/robotcar_utils.py", line 148, in lidar_pc2pixor
+    pixel_h = np.int(np.round((h2 - h1) / delta_h))
+  File "/opt/conda/lib/python3.10/site-packages/numpy/__init__.py", line 324, in __getattr__
+    raise AttributeError(__former_attrs__[attr])
+AttributeError: module 'numpy' has no attribute 'int'.
+`np.int` was a deprecated alias for the builtin `int`. To avoid this error in existing code, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+The aliases was originally deprecated in NumPy 1.20; for more details and guidance see the original release note at:
+    https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+
+[12/02 16:00:57] d2.engine.hooks INFO: Total training time: 0:00:00 (0:00:00 on hooks)
+[12/03 08:51:49] detectron2 INFO: Rank of current process: 0. World size: 1
+[12/03 08:51:50] detectron2 INFO: Environment info:
+------------------------  ---------------------------------------------------------------------------------------------------------------------
+sys.platform              linux
+Python                    3.10.14 (main, May  6 2024, 19:42:50) [GCC 11.2.0]
+numpy                     1.26.4
+detectron2                0.1.1 @/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2
+detectron2 compiler       GCC 11.4
+detectron2 CUDA compiler  not available
+detectron2 arch flags     /home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/_C.cpython-310-x86_64-linux-gnu.so; cannot find cuobjdump
+DETECTRON2_ENV_MODULE     <not set>
+PyTorch                   2.3.1 @/opt/conda/lib/python3.10/site-packages/torch
+PyTorch debug build       False
+CUDA available            True
+GPU 0                     NVIDIA RTX A6000
+CUDA_HOME                 /apps/software/standard/core/cuda/11.8.0
+Pillow                    9.0.0
+torchvision               0.18.1 @/opt/conda/lib/python3.10/site-packages/torchvision
+torchvision arch flags    /opt/conda/lib/python3.10/site-packages/torchvision/_C.so; cannot find cuobjdump
+------------------------  ---------------------------------------------------------------------------------------------------------------------
+PyTorch built with:
+  - GCC 9.3
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2023.1-Product Build 20230303 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.3.6 (Git Hash 86e6af5974177e513fd3fee58425e1063e7f1361)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.8
+  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_37,code=compute_37
+  - CuDNN 8.7
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.8, CUDNN_VERSION=8.7.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=2.3.1, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, 
+
+[12/03 08:51:50] detectron2 INFO: Command line arguments: Namespace(config_file='./configs/train_config.yaml', resume=False, eval_only=False, num_gpus=1, num_machines=1, machine_rank=0, dist_url='tcp://127.0.0.1:55975', opts=[])
+[12/03 08:51:50] detectron2 INFO: Contents of args.config_file=./configs/train_config.yaml:
+INPUT:
+  EVAL_BETA: 0.0
+  HISTORY_ON: True
+  NUM_HISTORY: 4
+  LIDAR:
+    FOG:
+      G: 0.45
+      N: 0.02
+      D_MIN: 2
+      FRACTION_RANDOM: 0.05
+      FOG_RATIO: 0.5
+      BETA_RANGE: [0.005, 0.08]
+    PROJECTION:
+      DELTA_L: 0.2
+      PIXEL_L: 320
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      DELTA_H: 0.1
+MODEL:
+  META_ARCHITECTURE: "MVDNet"
+  BACKBONE:
+    NAME: build_mvdnet_backbone
+  MVDNET:
+    STEM_OUT_CHANNELS: 32
+    STAGE_LAYERS: [3,3]
+    RADAR_STAGE_OUT_CHANNELS: [32,64]
+    LIDAR_STAGE_OUT_CHANNELS: [64,128]
+    RADAR_NORM: "BN"
+    LIDAR_NORM: "BN"
+  ANCHOR_GENERATOR:
+    NAME: RotatedAnchorGenerator
+    ANGLES: [[-90, -45, 0, 45]]
+    SIZES: [[26]] # Pixels
+    ASPECT_RATIOS: [[2]]
+  PROPOSAL_GENERATOR:
+    NAME: MVDNetRRPN
+    MIN_SIZE: 2
+  RPN:
+    BBOX_REG_WEIGHTS: (1,1,1,1,1)
+    IN_FEATURES: ["radar_rpn", "lidar_rpn"]
+    PRE_NMS_TOPK_TRAIN: 6000
+    PRE_NMS_TOPK_TEST: 3000
+    POST_NMS_TOPK_TRAIN: 1000
+    POST_NMS_TOPK_TEST: 500
+    IOU_THRESHOLDS: [0.45, 0.55]
+  ROI_HEADS:
+    NAME: MVDNetROIHeads
+    IN_FEATURES: ["radar_rcnn", "lidar_rcnn"]
+    BATCH_SIZE_PER_IMAGE: 256
+    NUM_CLASSES: 1
+    NMS_THRESH_TEST: 0.2
+    SCORE_THRESH_TEST: 0.1
+  ROI_BOX_HEAD:
+    NAME: MVDNetBoxHead
+    POOLER_TYPE: ROIAlignRotated
+    BBOX_REG_WEIGHTS: (10,10,5,5,1)
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+DATASETS:
+  TRAIN: ("robotcar_train",)
+  TEST: ("robotcar_eval",)
+SOLVER:
+  IMS_PER_BATCH: 1
+  BASE_LR: 0.01
+  MAX_ITER: 120000
+  STEPS: (40000,80000)
+  CHECKPOINT_PERIOD: 10000
+OUTPUT_DIR: ./output/mvdnet/
+
+[12/03 08:51:50] detectron2 INFO: Running with full config:
+CUDNN_BENCHMARK: False
+DATALOADER:
+  ASPECT_RATIO_GROUPING: True
+  FILTER_EMPTY_ANNOTATIONS: True
+  NUM_WORKERS: 4
+  REPEAT_THRESHOLD: 0.0
+  SAMPLER_TRAIN: TrainingSampler
+DATASETS:
+  PRECOMPUTED_PROPOSAL_TOPK_TEST: 1000
+  PRECOMPUTED_PROPOSAL_TOPK_TRAIN: 2000
+  PROPOSAL_FILES_TEST: ()
+  PROPOSAL_FILES_TRAIN: ()
+  TEST: ('robotcar_eval',)
+  TRAIN: ('robotcar_train',)
+GLOBAL:
+  HACK: 1.0
+INPUT:
+  CROP:
+    ENABLED: False
+    SIZE: [0.9, 0.9]
+    TYPE: relative_range
+  EVAL_BETA: 0.0
+  FORMAT: BGR
+  HISTORY_ON: True
+  LIDAR:
+    FOG:
+      BETA_RANGE: [0.005, 0.08]
+      D_MIN: 2
+      FOG_RATIO: 0.5
+      FRACTION_RANDOM: 0.05
+      G: 0.45
+      N: 0.02
+    PROJECTION:
+      DELTA_H: 0.1
+      DELTA_L: 0.2
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      PIXEL_L: 320
+  MASK_FORMAT: polygon
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: (800,)
+  MIN_SIZE_TRAIN_SAMPLING: choice
+  NUM_HISTORY: 4
+MODEL:
+  ANCHOR_GENERATOR:
+    ANGLES: [[-90, -45, 0, 45]]
+    ASPECT_RATIOS: [[2]]
+    NAME: RotatedAnchorGenerator
+    OFFSET: 0.0
+    SIZES: [[26]]
+  BACKBONE:
+    FREEZE_AT: 2
+    NAME: build_mvdnet_backbone
+  DEVICE: cuda
+  FPN:
+    FUSE_TYPE: sum
+    IN_FEATURES: []
+    NORM: 
+    OUT_CHANNELS: 256
+  KEYPOINT_ON: False
+  LOAD_PROPOSALS: False
+  MASK_ON: False
+  META_ARCHITECTURE: MVDNet
+  MVDNET:
+    LIDAR_NORM: BN
+    LIDAR_STAGE_OUT_CHANNELS: [64, 128]
+    RADAR_NORM: BN
+    RADAR_STAGE_OUT_CHANNELS: [32, 64]
+    STAGE_LAYERS: [3, 3]
+    STEM_OUT_CHANNELS: 32
+  PANOPTIC_FPN:
+    COMBINE:
+      ENABLED: True
+      INSTANCES_CONFIDENCE_THRESH: 0.5
+      OVERLAP_THRESH: 0.5
+      STUFF_AREA_LIMIT: 4096
+    INSTANCE_LOSS_WEIGHT: 1.0
+  PIXEL_MEAN: [103.53, 116.28, 123.675]
+  PIXEL_STD: [1.0, 1.0, 1.0]
+  PROPOSAL_GENERATOR:
+    MIN_SIZE: 2
+    NAME: MVDNetRRPN
+  RESNETS:
+    DEFORM_MODULATED: False
+    DEFORM_NUM_GROUPS: 1
+    DEFORM_ON_PER_STAGE: [False, False, False, False]
+    DEPTH: 50
+    NORM: FrozenBN
+    NUM_GROUPS: 1
+    OUT_FEATURES: ['res4']
+    RES2_OUT_CHANNELS: 256
+    RES5_DILATION: 1
+    STEM_OUT_CHANNELS: 64
+    STRIDE_IN_1X1: True
+    WIDTH_PER_GROUP: 64
+  RETINANET:
+    BBOX_REG_WEIGHTS: (1.0, 1.0, 1.0, 1.0)
+    FOCAL_LOSS_ALPHA: 0.25
+    FOCAL_LOSS_GAMMA: 2.0
+    IN_FEATURES: ['p3', 'p4', 'p5', 'p6', 'p7']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.4, 0.5]
+    NMS_THRESH_TEST: 0.5
+    NUM_CLASSES: 80
+    NUM_CONVS: 4
+    PRIOR_PROB: 0.01
+    SCORE_THRESH_TEST: 0.05
+    SMOOTH_L1_LOSS_BETA: 0.1
+    TOPK_CANDIDATES_TEST: 1000
+  ROI_BOX_CASCADE_HEAD:
+    BBOX_REG_WEIGHTS: ((10.0, 10.0, 5.0, 5.0), (20.0, 20.0, 10.0, 10.0), (30.0, 30.0, 15.0, 15.0))
+    IOUS: (0.5, 0.6, 0.7)
+  ROI_BOX_HEAD:
+    BBOX_REG_WEIGHTS: (10, 10, 5, 5, 1)
+    CLS_AGNOSTIC_BBOX_REG: False
+    CONV_DIM: 256
+    FC_DIM: 1024
+    NAME: MVDNetBoxHead
+    NORM: 
+    NUM_CONV: 0
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignRotated
+    SMOOTH_L1_BETA: 0.0
+    TRAIN_ON_PRED_BOXES: False
+  ROI_HEADS:
+    BATCH_SIZE_PER_IMAGE: 256
+    IN_FEATURES: ['radar_rcnn', 'lidar_rcnn']
+    IOU_LABELS: [0, 1]
+    IOU_THRESHOLDS: [0.5]
+    NAME: MVDNetROIHeads
+    NMS_THRESH_TEST: 0.2
+    NUM_CLASSES: 1
+    POSITIVE_FRACTION: 0.25
+    PROPOSAL_APPEND_GT: True
+    SCORE_THRESH_TEST: 0.1
+  ROI_KEYPOINT_HEAD:
+    CONV_DIMS: (512, 512, 512, 512, 512, 512, 512, 512)
+    LOSS_WEIGHT: 1.0
+    MIN_KEYPOINTS_PER_IMAGE: 1
+    NAME: KRCNNConvDeconvUpsampleHead
+    NORMALIZE_LOSS_BY_VISIBLE_KEYPOINTS: True
+    NUM_KEYPOINTS: 17
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  ROI_MASK_HEAD:
+    CLS_AGNOSTIC_MASK: False
+    CONV_DIM: 256
+    NAME: MaskRCNNConvUpsampleHead
+    NORM: 
+    NUM_CONV: 0
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  RPN:
+    BATCH_SIZE_PER_IMAGE: 256
+    BBOX_REG_WEIGHTS: (1, 1, 1, 1, 1)
+    BOUNDARY_THRESH: -1
+    HEAD_NAME: StandardRPNHead
+    IN_FEATURES: ['radar_rpn', 'lidar_rpn']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.45, 0.55]
+    LOSS_WEIGHT: 1.0
+    NMS_THRESH: 0.7
+    POSITIVE_FRACTION: 0.5
+    POST_NMS_TOPK_TEST: 500
+    POST_NMS_TOPK_TRAIN: 1000
+    PRE_NMS_TOPK_TEST: 3000
+    PRE_NMS_TOPK_TRAIN: 6000
+    SMOOTH_L1_BETA: 0.0
+  SEM_SEG_HEAD:
+    COMMON_STRIDE: 4
+    CONVS_DIM: 128
+    IGNORE_VALUE: 255
+    IN_FEATURES: ['p2', 'p3', 'p4', 'p5']
+    LOSS_WEIGHT: 1.0
+    NAME: SemSegFPNHead
+    NORM: GN
+    NUM_CLASSES: 54
+  WEIGHTS: 
+OUTPUT_DIR: ./output/mvdnet/
+SEED: -1
+SOLVER:
+  BASE_LR: 0.01
+  BIAS_LR_FACTOR: 1.0
+  CHECKPOINT_PERIOD: 10000
+  CLIP_GRADIENTS:
+    CLIP_TYPE: value
+    CLIP_VALUE: 1.0
+    ENABLED: False
+    NORM_TYPE: 2.0
+  GAMMA: 0.1
+  IMS_PER_BATCH: 1
+  LR_SCHEDULER_NAME: WarmupMultiStepLR
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  STEPS: (40000, 80000)
+  WARMUP_FACTOR: 0.001
+  WARMUP_ITERS: 1000
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0001
+  WEIGHT_DECAY_BIAS: 0.0001
+  WEIGHT_DECAY_NORM: 0.0
+TEST:
+  AUG:
+    ENABLED: False
+    FLIP: True
+    MAX_SIZE: 4000
+    MIN_SIZES: (400, 500, 600, 700, 800, 900, 1000, 1100, 1200)
+  DETECTIONS_PER_IMAGE: 100
+  EVAL_PERIOD: 0
+  EXPECTED_RESULTS: []
+  KEYPOINT_OKS_SIGMAS: []
+  PRECISE_BN:
+    ENABLED: False
+    NUM_ITER: 200
+VERSION: 2
+VIS_PERIOD: 0
+[12/03 08:51:50] detectron2 INFO: Full config saved to ./output/mvdnet/config.yaml
+[12/03 08:51:50] d2.utils.env INFO: Using a generated random seed 50994618
+[12/03 08:51:50] d2.engine.defaults INFO: Model:
+MVDNet(
+  (backbone): MVDNetBackbone(
+    (radar_backbone): VGG(
+      (stem): MVDNetStem(
+        (conv1): Conv2d(
+          1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): FrozenBatchNorm2d(num_features=32, eps=1e-05)
+        )
+      )
+      (down1): Sequential(
+        (0): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (down2): Sequential(
+        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (1): Conv2d(
+          32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (3): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (up1): ConvTranspose2d(
+        64, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fusion1): Conv2d(
+        64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (final_fusion): Conv2d(
+        160, 32, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (lidar_backbone): VGG(
+      (stem): MVDNetStem(
+        (conv1): Conv2d(
+          36, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): FrozenBatchNorm2d(num_features=32, eps=1e-05)
+        )
+      )
+      (down1): Sequential(
+        (0): Conv2d(
+          32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (down2): Sequential(
+        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (1): Conv2d(
+          64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (3): Conv2d(
+          128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (up1): ConvTranspose2d(
+        128, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fusion1): Conv2d(
+        128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (final_fusion): Conv2d(
+        320, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (proposal_generator): MVDNetRRPN(
+    (radar_rpn_anchor_generator): RotatedAnchorGenerator(
+      (cell_anchors): BufferList()
+    )
+    (lidar_rpn_anchor_generator): RotatedAnchorGenerator(
+      (cell_anchors): BufferList()
+    )
+    (radar_rpn_rpn_head): StandardRPNHead(
+      (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (objectness_logits): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1))
+      (anchor_deltas): Conv2d(32, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (lidar_rpn_rpn_head): StandardRPNHead(
+      (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (objectness_logits): Conv2d(64, 4, kernel_size=(1, 1), stride=(1, 1))
+      (anchor_deltas): Conv2d(64, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+  (roi_heads): MVDNetROIHeads(
+    (box_pooler): ROIPooler(
+      (level_poolers): ModuleList(
+        (0): ROIAlignRotated(output_size=(7, 7), spatial_scale=1.0, sampling_ratio=0)
+      )
+    )
+    (box_head): MVDNetBoxHead(
+      (match_conv): Conv2d(
+        64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (radar_self_attention): SelfAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (lidar_self_attention): SelfAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (radar_cross_attention): CrossAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (lidar_cross_attention): CrossAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (tnn1): Conv3d(
+        64, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (tnn2): Conv3d(
+        32, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (tnn3): Conv3d(
+        32, 32, kernel_size=(5, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fc1): Linear(in_features=1568, out_features=1024, bias=True)
+      (fc2): Linear(in_features=1024, out_features=1024, bias=True)
+    )
+    (box_predictor): FastRCNNOutputLayers(
+      (cls_score): Linear(in_features=1024, out_features=2, bias=True)
+      (bbox_pred): Linear(in_features=1024, out_features=5, bias=True)
+    )
+    (direct_predictor): MVDNetRCNNOutputLayers(
+      (direct_score): Linear(in_features=1024, out_features=2, bias=True)
+    )
+  )
+)
+[12/03 08:51:53] d2.data.build INFO: Removed 367 images with no usable annotations. 6697 images left.
+[12/03 08:51:53] d2.data.build INFO: Distribution of instances among all 1 categories:
+|  category  | #instances   |
+|:----------:|:-------------|
+|    car     | 42928        |
+|            |              |
+[12/03 08:51:53] d2.data.common INFO: Serializing 6697 elements to byte tensors and concatenating them all ...
+[12/03 08:51:53] d2.data.common INFO: Serialized dataset takes 4.72 MiB
+[12/03 08:51:53] d2.data.build INFO: Using training sampler TrainingSampler
+[12/03 08:51:54] fvcore.common.checkpoint INFO: No checkpoint found. Initializing model from scratch
+[12/03 08:51:54] d2.engine.train_loop INFO: Starting training from iteration 0
+[12/03 08:51:59] d2.engine.train_loop ERROR: Exception during training:
+Traceback (most recent call last):
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/engine/train_loop.py", line 132, in train
+    self.run_step()
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/engine/train_loop.py", line 215, in run_step
+    loss_dict = self.model(data)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jmz9sad/cs6501-wireless-project/mvdnet/modeling/meta_arch/mvdnet.py", line 41, in forward
+    proposals, proposal_losses = self.proposal_generator(radar_data, features, gt_instances)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jmz9sad/cs6501-wireless-project/mvdnet/modeling/proposal_generator/mvdnet_rrpn.py", line 180, in forward
+    for loss_key, loss_val in outputs[f].losses().items():
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/modeling/proposal_generator/rpn_outputs.py", line 327, in losses
+    gt_objectness_logits, gt_anchor_deltas = self._get_ground_truth()
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/modeling/proposal_generator/rrpn_outputs.py", line 222, in _get_ground_truth
+    match_quality_matrix = pairwise_iou_rotated(gt_boxes_i, anchors_i)
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/structures/rotated_boxes.py", line 498, in pairwise_iou
+    return pairwise_iou_rotated(boxes1.tensor, boxes2.tensor)
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/layers/rotated_boxes.py", line 23, in pairwise_iou_rotated
+    return _C.box_iou_rotated(boxes1, boxes2)
+RuntimeError: Not compiled with GPU support
+[12/03 08:51:59] d2.engine.hooks INFO: Total training time: 0:00:05 (0:00:00 on hooks)
+[12/03 09:00:36] detectron2 INFO: Rank of current process: 0. World size: 1
+[12/03 09:00:36] detectron2 INFO: Environment info:
+------------------------  ---------------------------------------------------------------------------------------------------------------------
+sys.platform              linux
+Python                    3.10.14 (main, May  6 2024, 19:42:50) [GCC 11.2.0]
+numpy                     1.26.4
+detectron2                0.1.1 @/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2
+detectron2 compiler       GCC 11.4
+detectron2 CUDA compiler  not available
+detectron2 arch flags     /home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/_C.cpython-310-x86_64-linux-gnu.so; cannot find cuobjdump
+DETECTRON2_ENV_MODULE     <not set>
+PyTorch                   2.3.1 @/opt/conda/lib/python3.10/site-packages/torch
+PyTorch debug build       False
+CUDA available            True
+GPU 0                     NVIDIA RTX A6000
+CUDA_HOME                 /apps/software/standard/core/cuda/11.8.0
+Pillow                    9.0.0
+torchvision               0.18.1 @/opt/conda/lib/python3.10/site-packages/torchvision
+torchvision arch flags    /opt/conda/lib/python3.10/site-packages/torchvision/_C.so; cannot find cuobjdump
+------------------------  ---------------------------------------------------------------------------------------------------------------------
+PyTorch built with:
+  - GCC 9.3
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2023.1-Product Build 20230303 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.3.6 (Git Hash 86e6af5974177e513fd3fee58425e1063e7f1361)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.8
+  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_37,code=compute_37
+  - CuDNN 8.7
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.8, CUDNN_VERSION=8.7.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=2.3.1, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, 
+
+[12/03 09:00:36] detectron2 INFO: Command line arguments: Namespace(config_file='./configs/train_config.yaml', resume=False, eval_only=False, num_gpus=1, num_machines=1, machine_rank=0, dist_url='tcp://127.0.0.1:55975', opts=[])
+[12/03 09:00:36] detectron2 INFO: Contents of args.config_file=./configs/train_config.yaml:
+INPUT:
+  EVAL_BETA: 0.0
+  HISTORY_ON: True
+  NUM_HISTORY: 4
+  LIDAR:
+    FOG:
+      G: 0.45
+      N: 0.02
+      D_MIN: 2
+      FRACTION_RANDOM: 0.05
+      FOG_RATIO: 0.5
+      BETA_RANGE: [0.005, 0.08]
+    PROJECTION:
+      DELTA_L: 0.2
+      PIXEL_L: 320
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      DELTA_H: 0.1
+MODEL:
+  META_ARCHITECTURE: "MVDNet"
+  BACKBONE:
+    NAME: build_mvdnet_backbone
+  MVDNET:
+    STEM_OUT_CHANNELS: 32
+    STAGE_LAYERS: [3,3]
+    RADAR_STAGE_OUT_CHANNELS: [32,64]
+    LIDAR_STAGE_OUT_CHANNELS: [64,128]
+    RADAR_NORM: "BN"
+    LIDAR_NORM: "BN"
+  ANCHOR_GENERATOR:
+    NAME: RotatedAnchorGenerator
+    ANGLES: [[-90, -45, 0, 45]]
+    SIZES: [[26]] # Pixels
+    ASPECT_RATIOS: [[2]]
+  PROPOSAL_GENERATOR:
+    NAME: MVDNetRRPN
+    MIN_SIZE: 2
+  RPN:
+    BBOX_REG_WEIGHTS: (1,1,1,1,1)
+    IN_FEATURES: ["radar_rpn", "lidar_rpn"]
+    PRE_NMS_TOPK_TRAIN: 6000
+    PRE_NMS_TOPK_TEST: 3000
+    POST_NMS_TOPK_TRAIN: 1000
+    POST_NMS_TOPK_TEST: 500
+    IOU_THRESHOLDS: [0.45, 0.55]
+  ROI_HEADS:
+    NAME: MVDNetROIHeads
+    IN_FEATURES: ["radar_rcnn", "lidar_rcnn"]
+    BATCH_SIZE_PER_IMAGE: 256
+    NUM_CLASSES: 1
+    NMS_THRESH_TEST: 0.2
+    SCORE_THRESH_TEST: 0.1
+  ROI_BOX_HEAD:
+    NAME: MVDNetBoxHead
+    POOLER_TYPE: ROIAlignRotated
+    BBOX_REG_WEIGHTS: (10,10,5,5,1)
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+DATASETS:
+  TRAIN: ("robotcar_train",)
+  TEST: ("robotcar_eval",)
+SOLVER:
+  IMS_PER_BATCH: 1
+  BASE_LR: 0.01
+  MAX_ITER: 120000
+  STEPS: (40000,80000)
+  CHECKPOINT_PERIOD: 10000
+OUTPUT_DIR: ./output/mvdnet/
+
+[12/03 09:00:36] detectron2 INFO: Running with full config:
+CUDNN_BENCHMARK: False
+DATALOADER:
+  ASPECT_RATIO_GROUPING: True
+  FILTER_EMPTY_ANNOTATIONS: True
+  NUM_WORKERS: 4
+  REPEAT_THRESHOLD: 0.0
+  SAMPLER_TRAIN: TrainingSampler
+DATASETS:
+  PRECOMPUTED_PROPOSAL_TOPK_TEST: 1000
+  PRECOMPUTED_PROPOSAL_TOPK_TRAIN: 2000
+  PROPOSAL_FILES_TEST: ()
+  PROPOSAL_FILES_TRAIN: ()
+  TEST: ('robotcar_eval',)
+  TRAIN: ('robotcar_train',)
+GLOBAL:
+  HACK: 1.0
+INPUT:
+  CROP:
+    ENABLED: False
+    SIZE: [0.9, 0.9]
+    TYPE: relative_range
+  EVAL_BETA: 0.0
+  FORMAT: BGR
+  HISTORY_ON: True
+  LIDAR:
+    FOG:
+      BETA_RANGE: [0.005, 0.08]
+      D_MIN: 2
+      FOG_RATIO: 0.5
+      FRACTION_RANDOM: 0.05
+      G: 0.45
+      N: 0.02
+    PROJECTION:
+      DELTA_H: 0.1
+      DELTA_L: 0.2
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      PIXEL_L: 320
+  MASK_FORMAT: polygon
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: (800,)
+  MIN_SIZE_TRAIN_SAMPLING: choice
+  NUM_HISTORY: 4
+MODEL:
+  ANCHOR_GENERATOR:
+    ANGLES: [[-90, -45, 0, 45]]
+    ASPECT_RATIOS: [[2]]
+    NAME: RotatedAnchorGenerator
+    OFFSET: 0.0
+    SIZES: [[26]]
+  BACKBONE:
+    FREEZE_AT: 2
+    NAME: build_mvdnet_backbone
+  DEVICE: cuda
+  FPN:
+    FUSE_TYPE: sum
+    IN_FEATURES: []
+    NORM: 
+    OUT_CHANNELS: 256
+  KEYPOINT_ON: False
+  LOAD_PROPOSALS: False
+  MASK_ON: False
+  META_ARCHITECTURE: MVDNet
+  MVDNET:
+    LIDAR_NORM: BN
+    LIDAR_STAGE_OUT_CHANNELS: [64, 128]
+    RADAR_NORM: BN
+    RADAR_STAGE_OUT_CHANNELS: [32, 64]
+    STAGE_LAYERS: [3, 3]
+    STEM_OUT_CHANNELS: 32
+  PANOPTIC_FPN:
+    COMBINE:
+      ENABLED: True
+      INSTANCES_CONFIDENCE_THRESH: 0.5
+      OVERLAP_THRESH: 0.5
+      STUFF_AREA_LIMIT: 4096
+    INSTANCE_LOSS_WEIGHT: 1.0
+  PIXEL_MEAN: [103.53, 116.28, 123.675]
+  PIXEL_STD: [1.0, 1.0, 1.0]
+  PROPOSAL_GENERATOR:
+    MIN_SIZE: 2
+    NAME: MVDNetRRPN
+  RESNETS:
+    DEFORM_MODULATED: False
+    DEFORM_NUM_GROUPS: 1
+    DEFORM_ON_PER_STAGE: [False, False, False, False]
+    DEPTH: 50
+    NORM: FrozenBN
+    NUM_GROUPS: 1
+    OUT_FEATURES: ['res4']
+    RES2_OUT_CHANNELS: 256
+    RES5_DILATION: 1
+    STEM_OUT_CHANNELS: 64
+    STRIDE_IN_1X1: True
+    WIDTH_PER_GROUP: 64
+  RETINANET:
+    BBOX_REG_WEIGHTS: (1.0, 1.0, 1.0, 1.0)
+    FOCAL_LOSS_ALPHA: 0.25
+    FOCAL_LOSS_GAMMA: 2.0
+    IN_FEATURES: ['p3', 'p4', 'p5', 'p6', 'p7']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.4, 0.5]
+    NMS_THRESH_TEST: 0.5
+    NUM_CLASSES: 80
+    NUM_CONVS: 4
+    PRIOR_PROB: 0.01
+    SCORE_THRESH_TEST: 0.05
+    SMOOTH_L1_LOSS_BETA: 0.1
+    TOPK_CANDIDATES_TEST: 1000
+  ROI_BOX_CASCADE_HEAD:
+    BBOX_REG_WEIGHTS: ((10.0, 10.0, 5.0, 5.0), (20.0, 20.0, 10.0, 10.0), (30.0, 30.0, 15.0, 15.0))
+    IOUS: (0.5, 0.6, 0.7)
+  ROI_BOX_HEAD:
+    BBOX_REG_WEIGHTS: (10, 10, 5, 5, 1)
+    CLS_AGNOSTIC_BBOX_REG: False
+    CONV_DIM: 256
+    FC_DIM: 1024
+    NAME: MVDNetBoxHead
+    NORM: 
+    NUM_CONV: 0
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignRotated
+    SMOOTH_L1_BETA: 0.0
+    TRAIN_ON_PRED_BOXES: False
+  ROI_HEADS:
+    BATCH_SIZE_PER_IMAGE: 256
+    IN_FEATURES: ['radar_rcnn', 'lidar_rcnn']
+    IOU_LABELS: [0, 1]
+    IOU_THRESHOLDS: [0.5]
+    NAME: MVDNetROIHeads
+    NMS_THRESH_TEST: 0.2
+    NUM_CLASSES: 1
+    POSITIVE_FRACTION: 0.25
+    PROPOSAL_APPEND_GT: True
+    SCORE_THRESH_TEST: 0.1
+  ROI_KEYPOINT_HEAD:
+    CONV_DIMS: (512, 512, 512, 512, 512, 512, 512, 512)
+    LOSS_WEIGHT: 1.0
+    MIN_KEYPOINTS_PER_IMAGE: 1
+    NAME: KRCNNConvDeconvUpsampleHead
+    NORMALIZE_LOSS_BY_VISIBLE_KEYPOINTS: True
+    NUM_KEYPOINTS: 17
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  ROI_MASK_HEAD:
+    CLS_AGNOSTIC_MASK: False
+    CONV_DIM: 256
+    NAME: MaskRCNNConvUpsampleHead
+    NORM: 
+    NUM_CONV: 0
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  RPN:
+    BATCH_SIZE_PER_IMAGE: 256
+    BBOX_REG_WEIGHTS: (1, 1, 1, 1, 1)
+    BOUNDARY_THRESH: -1
+    HEAD_NAME: StandardRPNHead
+    IN_FEATURES: ['radar_rpn', 'lidar_rpn']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.45, 0.55]
+    LOSS_WEIGHT: 1.0
+    NMS_THRESH: 0.7
+    POSITIVE_FRACTION: 0.5
+    POST_NMS_TOPK_TEST: 500
+    POST_NMS_TOPK_TRAIN: 1000
+    PRE_NMS_TOPK_TEST: 3000
+    PRE_NMS_TOPK_TRAIN: 6000
+    SMOOTH_L1_BETA: 0.0
+  SEM_SEG_HEAD:
+    COMMON_STRIDE: 4
+    CONVS_DIM: 128
+    IGNORE_VALUE: 255
+    IN_FEATURES: ['p2', 'p3', 'p4', 'p5']
+    LOSS_WEIGHT: 1.0
+    NAME: SemSegFPNHead
+    NORM: GN
+    NUM_CLASSES: 54
+  WEIGHTS: 
+OUTPUT_DIR: ./output/mvdnet/
+SEED: -1
+SOLVER:
+  BASE_LR: 0.01
+  BIAS_LR_FACTOR: 1.0
+  CHECKPOINT_PERIOD: 10000
+  CLIP_GRADIENTS:
+    CLIP_TYPE: value
+    CLIP_VALUE: 1.0
+    ENABLED: False
+    NORM_TYPE: 2.0
+  GAMMA: 0.1
+  IMS_PER_BATCH: 1
+  LR_SCHEDULER_NAME: WarmupMultiStepLR
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  STEPS: (40000, 80000)
+  WARMUP_FACTOR: 0.001
+  WARMUP_ITERS: 1000
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0001
+  WEIGHT_DECAY_BIAS: 0.0001
+  WEIGHT_DECAY_NORM: 0.0
+TEST:
+  AUG:
+    ENABLED: False
+    FLIP: True
+    MAX_SIZE: 4000
+    MIN_SIZES: (400, 500, 600, 700, 800, 900, 1000, 1100, 1200)
+  DETECTIONS_PER_IMAGE: 100
+  EVAL_PERIOD: 0
+  EXPECTED_RESULTS: []
+  KEYPOINT_OKS_SIGMAS: []
+  PRECISE_BN:
+    ENABLED: False
+    NUM_ITER: 200
+VERSION: 2
+VIS_PERIOD: 0
+[12/03 09:00:36] detectron2 INFO: Full config saved to ./output/mvdnet/config.yaml
+[12/03 09:00:36] d2.utils.env INFO: Using a generated random seed 37516039
+[12/03 09:00:37] d2.engine.defaults INFO: Model:
+MVDNet(
+  (backbone): MVDNetBackbone(
+    (radar_backbone): VGG(
+      (stem): MVDNetStem(
+        (conv1): Conv2d(
+          1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): FrozenBatchNorm2d(num_features=32, eps=1e-05)
+        )
+      )
+      (down1): Sequential(
+        (0): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (down2): Sequential(
+        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (1): Conv2d(
+          32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (3): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (up1): ConvTranspose2d(
+        64, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fusion1): Conv2d(
+        64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (final_fusion): Conv2d(
+        160, 32, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (lidar_backbone): VGG(
+      (stem): MVDNetStem(
+        (conv1): Conv2d(
+          36, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): FrozenBatchNorm2d(num_features=32, eps=1e-05)
+        )
+      )
+      (down1): Sequential(
+        (0): Conv2d(
+          32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (down2): Sequential(
+        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (1): Conv2d(
+          64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (3): Conv2d(
+          128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (up1): ConvTranspose2d(
+        128, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fusion1): Conv2d(
+        128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (final_fusion): Conv2d(
+        320, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (proposal_generator): MVDNetRRPN(
+    (radar_rpn_anchor_generator): RotatedAnchorGenerator(
+      (cell_anchors): BufferList()
+    )
+    (lidar_rpn_anchor_generator): RotatedAnchorGenerator(
+      (cell_anchors): BufferList()
+    )
+    (radar_rpn_rpn_head): StandardRPNHead(
+      (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (objectness_logits): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1))
+      (anchor_deltas): Conv2d(32, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (lidar_rpn_rpn_head): StandardRPNHead(
+      (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (objectness_logits): Conv2d(64, 4, kernel_size=(1, 1), stride=(1, 1))
+      (anchor_deltas): Conv2d(64, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+  (roi_heads): MVDNetROIHeads(
+    (box_pooler): ROIPooler(
+      (level_poolers): ModuleList(
+        (0): ROIAlignRotated(output_size=(7, 7), spatial_scale=1.0, sampling_ratio=0)
+      )
+    )
+    (box_head): MVDNetBoxHead(
+      (match_conv): Conv2d(
+        64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (radar_self_attention): SelfAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (lidar_self_attention): SelfAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (radar_cross_attention): CrossAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (lidar_cross_attention): CrossAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (tnn1): Conv3d(
+        64, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (tnn2): Conv3d(
+        32, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (tnn3): Conv3d(
+        32, 32, kernel_size=(5, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fc1): Linear(in_features=1568, out_features=1024, bias=True)
+      (fc2): Linear(in_features=1024, out_features=1024, bias=True)
+    )
+    (box_predictor): FastRCNNOutputLayers(
+      (cls_score): Linear(in_features=1024, out_features=2, bias=True)
+      (bbox_pred): Linear(in_features=1024, out_features=5, bias=True)
+    )
+    (direct_predictor): MVDNetRCNNOutputLayers(
+      (direct_score): Linear(in_features=1024, out_features=2, bias=True)
+    )
+  )
+)
+[12/03 09:00:39] d2.data.build INFO: Removed 367 images with no usable annotations. 6697 images left.
+[12/03 09:00:39] d2.data.build INFO: Distribution of instances among all 1 categories:
+|  category  | #instances   |
+|:----------:|:-------------|
+|    car     | 42928        |
+|            |              |
+[12/03 09:00:39] d2.data.common INFO: Serializing 6697 elements to byte tensors and concatenating them all ...
+[12/03 09:00:39] d2.data.common INFO: Serialized dataset takes 4.72 MiB
+[12/03 09:00:39] d2.data.build INFO: Using training sampler TrainingSampler
+[12/03 09:00:40] fvcore.common.checkpoint INFO: No checkpoint found. Initializing model from scratch
+[12/03 09:00:40] d2.engine.train_loop INFO: Starting training from iteration 0
+[12/03 09:00:43] d2.engine.train_loop ERROR: Exception during training:
+Traceback (most recent call last):
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/engine/train_loop.py", line 132, in train
+    self.run_step()
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/engine/train_loop.py", line 215, in run_step
+    loss_dict = self.model(data)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jmz9sad/cs6501-wireless-project/mvdnet/modeling/meta_arch/mvdnet.py", line 41, in forward
+    proposals, proposal_losses = self.proposal_generator(radar_data, features, gt_instances)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jmz9sad/cs6501-wireless-project/mvdnet/modeling/proposal_generator/mvdnet_rrpn.py", line 180, in forward
+    for loss_key, loss_val in outputs[f].losses().items():
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/modeling/proposal_generator/rpn_outputs.py", line 327, in losses
+    gt_objectness_logits, gt_anchor_deltas = self._get_ground_truth()
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/modeling/proposal_generator/rrpn_outputs.py", line 222, in _get_ground_truth
+    match_quality_matrix = pairwise_iou_rotated(gt_boxes_i, anchors_i)
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/structures/rotated_boxes.py", line 498, in pairwise_iou
+    return pairwise_iou_rotated(boxes1.tensor, boxes2.tensor)
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/layers/rotated_boxes.py", line 23, in pairwise_iou_rotated
+    return _C.box_iou_rotated(boxes1, boxes2)
+RuntimeError: Not compiled with GPU support
+[12/03 09:00:43] d2.engine.hooks INFO: Total training time: 0:00:03 (0:00:00 on hooks)
+[12/03 09:07:42] detectron2 INFO: Rank of current process: 0. World size: 1
+[12/03 09:07:43] detectron2 INFO: Environment info:
+------------------------  ---------------------------------------------------------------------------------------------------------------------
+sys.platform              linux
+Python                    3.10.14 (main, May  6 2024, 19:42:50) [GCC 11.2.0]
+numpy                     1.26.4
+detectron2                0.1.1 @/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2
+detectron2 compiler       GCC 11.4
+detectron2 CUDA compiler  not available
+detectron2 arch flags     /home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/_C.cpython-310-x86_64-linux-gnu.so; cannot find cuobjdump
+DETECTRON2_ENV_MODULE     <not set>
+PyTorch                   2.3.1 @/opt/conda/lib/python3.10/site-packages/torch
+PyTorch debug build       False
+CUDA available            True
+GPU 0                     NVIDIA RTX A6000
+CUDA_HOME                 /apps/software/standard/core/cuda/11.8.0
+Pillow                    9.0.0
+torchvision               0.18.1 @/opt/conda/lib/python3.10/site-packages/torchvision
+torchvision arch flags    /opt/conda/lib/python3.10/site-packages/torchvision/_C.so; cannot find cuobjdump
+------------------------  ---------------------------------------------------------------------------------------------------------------------
+PyTorch built with:
+  - GCC 9.3
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2023.1-Product Build 20230303 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.3.6 (Git Hash 86e6af5974177e513fd3fee58425e1063e7f1361)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.8
+  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_37,code=compute_37
+  - CuDNN 8.7
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.8, CUDNN_VERSION=8.7.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=2.3.1, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, 
+
+[12/03 09:07:43] detectron2 INFO: Command line arguments: Namespace(config_file='./configs/train_config.yaml', resume=False, eval_only=False, num_gpus=1, num_machines=1, machine_rank=0, dist_url='tcp://127.0.0.1:55975', opts=[])
+[12/03 09:07:43] detectron2 INFO: Contents of args.config_file=./configs/train_config.yaml:
+INPUT:
+  EVAL_BETA: 0.0
+  HISTORY_ON: True
+  NUM_HISTORY: 4
+  LIDAR:
+    FOG:
+      G: 0.45
+      N: 0.02
+      D_MIN: 2
+      FRACTION_RANDOM: 0.05
+      FOG_RATIO: 0.5
+      BETA_RANGE: [0.005, 0.08]
+    PROJECTION:
+      DELTA_L: 0.2
+      PIXEL_L: 320
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      DELTA_H: 0.1
+MODEL:
+  META_ARCHITECTURE: "MVDNet"
+  BACKBONE:
+    NAME: build_mvdnet_backbone
+  MVDNET:
+    STEM_OUT_CHANNELS: 32
+    STAGE_LAYERS: [3,3]
+    RADAR_STAGE_OUT_CHANNELS: [32,64]
+    LIDAR_STAGE_OUT_CHANNELS: [64,128]
+    RADAR_NORM: "BN"
+    LIDAR_NORM: "BN"
+  ANCHOR_GENERATOR:
+    NAME: RotatedAnchorGenerator
+    ANGLES: [[-90, -45, 0, 45]]
+    SIZES: [[26]] # Pixels
+    ASPECT_RATIOS: [[2]]
+  PROPOSAL_GENERATOR:
+    NAME: MVDNetRRPN
+    MIN_SIZE: 2
+  RPN:
+    BBOX_REG_WEIGHTS: (1,1,1,1,1)
+    IN_FEATURES: ["radar_rpn", "lidar_rpn"]
+    PRE_NMS_TOPK_TRAIN: 6000
+    PRE_NMS_TOPK_TEST: 3000
+    POST_NMS_TOPK_TRAIN: 1000
+    POST_NMS_TOPK_TEST: 500
+    IOU_THRESHOLDS: [0.45, 0.55]
+  ROI_HEADS:
+    NAME: MVDNetROIHeads
+    IN_FEATURES: ["radar_rcnn", "lidar_rcnn"]
+    BATCH_SIZE_PER_IMAGE: 256
+    NUM_CLASSES: 1
+    NMS_THRESH_TEST: 0.2
+    SCORE_THRESH_TEST: 0.1
+  ROI_BOX_HEAD:
+    NAME: MVDNetBoxHead
+    POOLER_TYPE: ROIAlignRotated
+    BBOX_REG_WEIGHTS: (10,10,5,5,1)
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+DATASETS:
+  TRAIN: ("robotcar_train",)
+  TEST: ("robotcar_eval",)
+SOLVER:
+  IMS_PER_BATCH: 1
+  BASE_LR: 0.01
+  MAX_ITER: 120000
+  STEPS: (40000,80000)
+  CHECKPOINT_PERIOD: 10000
+OUTPUT_DIR: ./output/mvdnet/
+
+[12/03 09:07:43] detectron2 INFO: Running with full config:
+CUDNN_BENCHMARK: False
+DATALOADER:
+  ASPECT_RATIO_GROUPING: True
+  FILTER_EMPTY_ANNOTATIONS: True
+  NUM_WORKERS: 4
+  REPEAT_THRESHOLD: 0.0
+  SAMPLER_TRAIN: TrainingSampler
+DATASETS:
+  PRECOMPUTED_PROPOSAL_TOPK_TEST: 1000
+  PRECOMPUTED_PROPOSAL_TOPK_TRAIN: 2000
+  PROPOSAL_FILES_TEST: ()
+  PROPOSAL_FILES_TRAIN: ()
+  TEST: ('robotcar_eval',)
+  TRAIN: ('robotcar_train',)
+GLOBAL:
+  HACK: 1.0
+INPUT:
+  CROP:
+    ENABLED: False
+    SIZE: [0.9, 0.9]
+    TYPE: relative_range
+  EVAL_BETA: 0.0
+  FORMAT: BGR
+  HISTORY_ON: True
+  LIDAR:
+    FOG:
+      BETA_RANGE: [0.005, 0.08]
+      D_MIN: 2
+      FOG_RATIO: 0.5
+      FRACTION_RANDOM: 0.05
+      G: 0.45
+      N: 0.02
+    PROJECTION:
+      DELTA_H: 0.1
+      DELTA_L: 0.2
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      PIXEL_L: 320
+  MASK_FORMAT: polygon
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: (800,)
+  MIN_SIZE_TRAIN_SAMPLING: choice
+  NUM_HISTORY: 4
+MODEL:
+  ANCHOR_GENERATOR:
+    ANGLES: [[-90, -45, 0, 45]]
+    ASPECT_RATIOS: [[2]]
+    NAME: RotatedAnchorGenerator
+    OFFSET: 0.0
+    SIZES: [[26]]
+  BACKBONE:
+    FREEZE_AT: 2
+    NAME: build_mvdnet_backbone
+  DEVICE: cuda
+  FPN:
+    FUSE_TYPE: sum
+    IN_FEATURES: []
+    NORM: 
+    OUT_CHANNELS: 256
+  KEYPOINT_ON: False
+  LOAD_PROPOSALS: False
+  MASK_ON: False
+  META_ARCHITECTURE: MVDNet
+  MVDNET:
+    LIDAR_NORM: BN
+    LIDAR_STAGE_OUT_CHANNELS: [64, 128]
+    RADAR_NORM: BN
+    RADAR_STAGE_OUT_CHANNELS: [32, 64]
+    STAGE_LAYERS: [3, 3]
+    STEM_OUT_CHANNELS: 32
+  PANOPTIC_FPN:
+    COMBINE:
+      ENABLED: True
+      INSTANCES_CONFIDENCE_THRESH: 0.5
+      OVERLAP_THRESH: 0.5
+      STUFF_AREA_LIMIT: 4096
+    INSTANCE_LOSS_WEIGHT: 1.0
+  PIXEL_MEAN: [103.53, 116.28, 123.675]
+  PIXEL_STD: [1.0, 1.0, 1.0]
+  PROPOSAL_GENERATOR:
+    MIN_SIZE: 2
+    NAME: MVDNetRRPN
+  RESNETS:
+    DEFORM_MODULATED: False
+    DEFORM_NUM_GROUPS: 1
+    DEFORM_ON_PER_STAGE: [False, False, False, False]
+    DEPTH: 50
+    NORM: FrozenBN
+    NUM_GROUPS: 1
+    OUT_FEATURES: ['res4']
+    RES2_OUT_CHANNELS: 256
+    RES5_DILATION: 1
+    STEM_OUT_CHANNELS: 64
+    STRIDE_IN_1X1: True
+    WIDTH_PER_GROUP: 64
+  RETINANET:
+    BBOX_REG_WEIGHTS: (1.0, 1.0, 1.0, 1.0)
+    FOCAL_LOSS_ALPHA: 0.25
+    FOCAL_LOSS_GAMMA: 2.0
+    IN_FEATURES: ['p3', 'p4', 'p5', 'p6', 'p7']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.4, 0.5]
+    NMS_THRESH_TEST: 0.5
+    NUM_CLASSES: 80
+    NUM_CONVS: 4
+    PRIOR_PROB: 0.01
+    SCORE_THRESH_TEST: 0.05
+    SMOOTH_L1_LOSS_BETA: 0.1
+    TOPK_CANDIDATES_TEST: 1000
+  ROI_BOX_CASCADE_HEAD:
+    BBOX_REG_WEIGHTS: ((10.0, 10.0, 5.0, 5.0), (20.0, 20.0, 10.0, 10.0), (30.0, 30.0, 15.0, 15.0))
+    IOUS: (0.5, 0.6, 0.7)
+  ROI_BOX_HEAD:
+    BBOX_REG_WEIGHTS: (10, 10, 5, 5, 1)
+    CLS_AGNOSTIC_BBOX_REG: False
+    CONV_DIM: 256
+    FC_DIM: 1024
+    NAME: MVDNetBoxHead
+    NORM: 
+    NUM_CONV: 0
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignRotated
+    SMOOTH_L1_BETA: 0.0
+    TRAIN_ON_PRED_BOXES: False
+  ROI_HEADS:
+    BATCH_SIZE_PER_IMAGE: 256
+    IN_FEATURES: ['radar_rcnn', 'lidar_rcnn']
+    IOU_LABELS: [0, 1]
+    IOU_THRESHOLDS: [0.5]
+    NAME: MVDNetROIHeads
+    NMS_THRESH_TEST: 0.2
+    NUM_CLASSES: 1
+    POSITIVE_FRACTION: 0.25
+    PROPOSAL_APPEND_GT: True
+    SCORE_THRESH_TEST: 0.1
+  ROI_KEYPOINT_HEAD:
+    CONV_DIMS: (512, 512, 512, 512, 512, 512, 512, 512)
+    LOSS_WEIGHT: 1.0
+    MIN_KEYPOINTS_PER_IMAGE: 1
+    NAME: KRCNNConvDeconvUpsampleHead
+    NORMALIZE_LOSS_BY_VISIBLE_KEYPOINTS: True
+    NUM_KEYPOINTS: 17
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  ROI_MASK_HEAD:
+    CLS_AGNOSTIC_MASK: False
+    CONV_DIM: 256
+    NAME: MaskRCNNConvUpsampleHead
+    NORM: 
+    NUM_CONV: 0
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  RPN:
+    BATCH_SIZE_PER_IMAGE: 256
+    BBOX_REG_WEIGHTS: (1, 1, 1, 1, 1)
+    BOUNDARY_THRESH: -1
+    HEAD_NAME: StandardRPNHead
+    IN_FEATURES: ['radar_rpn', 'lidar_rpn']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.45, 0.55]
+    LOSS_WEIGHT: 1.0
+    NMS_THRESH: 0.7
+    POSITIVE_FRACTION: 0.5
+    POST_NMS_TOPK_TEST: 500
+    POST_NMS_TOPK_TRAIN: 1000
+    PRE_NMS_TOPK_TEST: 3000
+    PRE_NMS_TOPK_TRAIN: 6000
+    SMOOTH_L1_BETA: 0.0
+  SEM_SEG_HEAD:
+    COMMON_STRIDE: 4
+    CONVS_DIM: 128
+    IGNORE_VALUE: 255
+    IN_FEATURES: ['p2', 'p3', 'p4', 'p5']
+    LOSS_WEIGHT: 1.0
+    NAME: SemSegFPNHead
+    NORM: GN
+    NUM_CLASSES: 54
+  WEIGHTS: 
+OUTPUT_DIR: ./output/mvdnet/
+SEED: -1
+SOLVER:
+  BASE_LR: 0.01
+  BIAS_LR_FACTOR: 1.0
+  CHECKPOINT_PERIOD: 10000
+  CLIP_GRADIENTS:
+    CLIP_TYPE: value
+    CLIP_VALUE: 1.0
+    ENABLED: False
+    NORM_TYPE: 2.0
+  GAMMA: 0.1
+  IMS_PER_BATCH: 1
+  LR_SCHEDULER_NAME: WarmupMultiStepLR
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  STEPS: (40000, 80000)
+  WARMUP_FACTOR: 0.001
+  WARMUP_ITERS: 1000
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0001
+  WEIGHT_DECAY_BIAS: 0.0001
+  WEIGHT_DECAY_NORM: 0.0
+TEST:
+  AUG:
+    ENABLED: False
+    FLIP: True
+    MAX_SIZE: 4000
+    MIN_SIZES: (400, 500, 600, 700, 800, 900, 1000, 1100, 1200)
+  DETECTIONS_PER_IMAGE: 100
+  EVAL_PERIOD: 0
+  EXPECTED_RESULTS: []
+  KEYPOINT_OKS_SIGMAS: []
+  PRECISE_BN:
+    ENABLED: False
+    NUM_ITER: 200
+VERSION: 2
+VIS_PERIOD: 0
+[12/03 09:07:43] detectron2 INFO: Full config saved to ./output/mvdnet/config.yaml
+[12/03 09:07:43] d2.utils.env INFO: Using a generated random seed 43749515
+[12/03 09:07:43] d2.engine.defaults INFO: Model:
+MVDNet(
+  (backbone): MVDNetBackbone(
+    (radar_backbone): VGG(
+      (stem): MVDNetStem(
+        (conv1): Conv2d(
+          1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): FrozenBatchNorm2d(num_features=32, eps=1e-05)
+        )
+      )
+      (down1): Sequential(
+        (0): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (down2): Sequential(
+        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (1): Conv2d(
+          32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (3): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (up1): ConvTranspose2d(
+        64, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fusion1): Conv2d(
+        64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (final_fusion): Conv2d(
+        160, 32, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (lidar_backbone): VGG(
+      (stem): MVDNetStem(
+        (conv1): Conv2d(
+          36, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): FrozenBatchNorm2d(num_features=32, eps=1e-05)
+        )
+      )
+      (down1): Sequential(
+        (0): Conv2d(
+          32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (down2): Sequential(
+        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (1): Conv2d(
+          64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (3): Conv2d(
+          128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (up1): ConvTranspose2d(
+        128, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fusion1): Conv2d(
+        128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (final_fusion): Conv2d(
+        320, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (proposal_generator): MVDNetRRPN(
+    (radar_rpn_anchor_generator): RotatedAnchorGenerator(
+      (cell_anchors): BufferList()
+    )
+    (lidar_rpn_anchor_generator): RotatedAnchorGenerator(
+      (cell_anchors): BufferList()
+    )
+    (radar_rpn_rpn_head): StandardRPNHead(
+      (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (objectness_logits): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1))
+      (anchor_deltas): Conv2d(32, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (lidar_rpn_rpn_head): StandardRPNHead(
+      (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (objectness_logits): Conv2d(64, 4, kernel_size=(1, 1), stride=(1, 1))
+      (anchor_deltas): Conv2d(64, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+  (roi_heads): MVDNetROIHeads(
+    (box_pooler): ROIPooler(
+      (level_poolers): ModuleList(
+        (0): ROIAlignRotated(output_size=(7, 7), spatial_scale=1.0, sampling_ratio=0)
+      )
+    )
+    (box_head): MVDNetBoxHead(
+      (match_conv): Conv2d(
+        64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (radar_self_attention): SelfAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (lidar_self_attention): SelfAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (radar_cross_attention): CrossAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (lidar_cross_attention): CrossAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (tnn1): Conv3d(
+        64, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (tnn2): Conv3d(
+        32, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (tnn3): Conv3d(
+        32, 32, kernel_size=(5, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fc1): Linear(in_features=1568, out_features=1024, bias=True)
+      (fc2): Linear(in_features=1024, out_features=1024, bias=True)
+    )
+    (box_predictor): FastRCNNOutputLayers(
+      (cls_score): Linear(in_features=1024, out_features=2, bias=True)
+      (bbox_pred): Linear(in_features=1024, out_features=5, bias=True)
+    )
+    (direct_predictor): MVDNetRCNNOutputLayers(
+      (direct_score): Linear(in_features=1024, out_features=2, bias=True)
+    )
+  )
+)
+[12/03 09:07:45] d2.data.build INFO: Removed 367 images with no usable annotations. 6697 images left.
+[12/03 09:07:45] d2.data.build INFO: Distribution of instances among all 1 categories:
+|  category  | #instances   |
+|:----------:|:-------------|
+|    car     | 42928        |
+|            |              |
+[12/03 09:07:45] d2.data.common INFO: Serializing 6697 elements to byte tensors and concatenating them all ...
+[12/03 09:07:46] d2.data.common INFO: Serialized dataset takes 4.72 MiB
+[12/03 09:07:46] d2.data.build INFO: Using training sampler TrainingSampler
+[12/03 09:07:46] fvcore.common.checkpoint INFO: No checkpoint found. Initializing model from scratch
+[12/03 09:07:46] d2.engine.train_loop INFO: Starting training from iteration 0
+[12/03 09:07:49] d2.engine.train_loop ERROR: Exception during training:
+Traceback (most recent call last):
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/engine/train_loop.py", line 132, in train
+    self.run_step()
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/engine/train_loop.py", line 215, in run_step
+    loss_dict = self.model(data)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jmz9sad/cs6501-wireless-project/mvdnet/modeling/meta_arch/mvdnet.py", line 41, in forward
+    proposals, proposal_losses = self.proposal_generator(radar_data, features, gt_instances)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jmz9sad/cs6501-wireless-project/mvdnet/modeling/proposal_generator/mvdnet_rrpn.py", line 180, in forward
+    for loss_key, loss_val in outputs[f].losses().items():
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/modeling/proposal_generator/rpn_outputs.py", line 327, in losses
+    gt_objectness_logits, gt_anchor_deltas = self._get_ground_truth()
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/modeling/proposal_generator/rrpn_outputs.py", line 222, in _get_ground_truth
+    match_quality_matrix = pairwise_iou_rotated(gt_boxes_i, anchors_i)
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/structures/rotated_boxes.py", line 498, in pairwise_iou
+    return pairwise_iou_rotated(boxes1.tensor, boxes2.tensor)
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/layers/rotated_boxes.py", line 23, in pairwise_iou_rotated
+    return _C.box_iou_rotated(boxes1, boxes2)
+RuntimeError: Not compiled with GPU support
+[12/03 09:07:49] d2.engine.hooks INFO: Total training time: 0:00:03 (0:00:00 on hooks)
+[12/03 09:11:43] detectron2 INFO: Rank of current process: 0. World size: 1
+[12/03 09:11:44] detectron2 INFO: Environment info:
+------------------------  ------------------------------------------------------------------
+sys.platform              linux
+Python                    3.10.14 (main, May  6 2024, 19:42:50) [GCC 11.2.0]
+numpy                     1.26.4
+detectron2                0.1.1 @/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2
+detectron2 compiler       GCC 11.4
+detectron2 CUDA compiler  not available
+DETECTRON2_ENV_MODULE     <not set>
+PyTorch                   2.3.1 @/opt/conda/lib/python3.10/site-packages/torch
+PyTorch debug build       False
+CUDA available            False
+Pillow                    9.0.0
+torchvision               0.18.1 @/opt/conda/lib/python3.10/site-packages/torchvision
+------------------------  ------------------------------------------------------------------
+PyTorch built with:
+  - GCC 9.3
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2023.1-Product Build 20230303 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.3.6 (Git Hash 86e6af5974177e513fd3fee58425e1063e7f1361)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.8, CUDNN_VERSION=8.7.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=2.3.1, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, 
+
+[12/03 09:11:44] detectron2 INFO: Command line arguments: Namespace(config_file='./configs/train_config.yaml', resume=False, eval_only=False, num_gpus=1, num_machines=1, machine_rank=0, dist_url='tcp://127.0.0.1:55975', opts=[])
+[12/03 09:11:44] detectron2 INFO: Contents of args.config_file=./configs/train_config.yaml:
+INPUT:
+  EVAL_BETA: 0.0
+  HISTORY_ON: True
+  NUM_HISTORY: 4
+  LIDAR:
+    FOG:
+      G: 0.45
+      N: 0.02
+      D_MIN: 2
+      FRACTION_RANDOM: 0.05
+      FOG_RATIO: 0.5
+      BETA_RANGE: [0.005, 0.08]
+    PROJECTION:
+      DELTA_L: 0.2
+      PIXEL_L: 320
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      DELTA_H: 0.1
+MODEL:
+  META_ARCHITECTURE: "MVDNet"
+  BACKBONE:
+    NAME: build_mvdnet_backbone
+  MVDNET:
+    STEM_OUT_CHANNELS: 32
+    STAGE_LAYERS: [3,3]
+    RADAR_STAGE_OUT_CHANNELS: [32,64]
+    LIDAR_STAGE_OUT_CHANNELS: [64,128]
+    RADAR_NORM: "BN"
+    LIDAR_NORM: "BN"
+  ANCHOR_GENERATOR:
+    NAME: RotatedAnchorGenerator
+    ANGLES: [[-90, -45, 0, 45]]
+    SIZES: [[26]] # Pixels
+    ASPECT_RATIOS: [[2]]
+  PROPOSAL_GENERATOR:
+    NAME: MVDNetRRPN
+    MIN_SIZE: 2
+  RPN:
+    BBOX_REG_WEIGHTS: (1,1,1,1,1)
+    IN_FEATURES: ["radar_rpn", "lidar_rpn"]
+    PRE_NMS_TOPK_TRAIN: 6000
+    PRE_NMS_TOPK_TEST: 3000
+    POST_NMS_TOPK_TRAIN: 1000
+    POST_NMS_TOPK_TEST: 500
+    IOU_THRESHOLDS: [0.45, 0.55]
+  ROI_HEADS:
+    NAME: MVDNetROIHeads
+    IN_FEATURES: ["radar_rcnn", "lidar_rcnn"]
+    BATCH_SIZE_PER_IMAGE: 256
+    NUM_CLASSES: 1
+    NMS_THRESH_TEST: 0.2
+    SCORE_THRESH_TEST: 0.1
+  ROI_BOX_HEAD:
+    NAME: MVDNetBoxHead
+    POOLER_TYPE: ROIAlignRotated
+    BBOX_REG_WEIGHTS: (10,10,5,5,1)
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+DATASETS:
+  TRAIN: ("robotcar_train",)
+  TEST: ("robotcar_eval",)
+SOLVER:
+  IMS_PER_BATCH: 1
+  BASE_LR: 0.01
+  MAX_ITER: 120000
+  STEPS: (40000,80000)
+  CHECKPOINT_PERIOD: 10000
+OUTPUT_DIR: ./output/mvdnet/
+
+[12/03 09:11:44] detectron2 INFO: Running with full config:
+CUDNN_BENCHMARK: False
+DATALOADER:
+  ASPECT_RATIO_GROUPING: True
+  FILTER_EMPTY_ANNOTATIONS: True
+  NUM_WORKERS: 4
+  REPEAT_THRESHOLD: 0.0
+  SAMPLER_TRAIN: TrainingSampler
+DATASETS:
+  PRECOMPUTED_PROPOSAL_TOPK_TEST: 1000
+  PRECOMPUTED_PROPOSAL_TOPK_TRAIN: 2000
+  PROPOSAL_FILES_TEST: ()
+  PROPOSAL_FILES_TRAIN: ()
+  TEST: ('robotcar_eval',)
+  TRAIN: ('robotcar_train',)
+GLOBAL:
+  HACK: 1.0
+INPUT:
+  CROP:
+    ENABLED: False
+    SIZE: [0.9, 0.9]
+    TYPE: relative_range
+  EVAL_BETA: 0.0
+  FORMAT: BGR
+  HISTORY_ON: True
+  LIDAR:
+    FOG:
+      BETA_RANGE: [0.005, 0.08]
+      D_MIN: 2
+      FOG_RATIO: 0.5
+      FRACTION_RANDOM: 0.05
+      G: 0.45
+      N: 0.02
+    PROJECTION:
+      DELTA_H: 0.1
+      DELTA_L: 0.2
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      PIXEL_L: 320
+  MASK_FORMAT: polygon
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: (800,)
+  MIN_SIZE_TRAIN_SAMPLING: choice
+  NUM_HISTORY: 4
+MODEL:
+  ANCHOR_GENERATOR:
+    ANGLES: [[-90, -45, 0, 45]]
+    ASPECT_RATIOS: [[2]]
+    NAME: RotatedAnchorGenerator
+    OFFSET: 0.0
+    SIZES: [[26]]
+  BACKBONE:
+    FREEZE_AT: 2
+    NAME: build_mvdnet_backbone
+  DEVICE: cuda
+  FPN:
+    FUSE_TYPE: sum
+    IN_FEATURES: []
+    NORM: 
+    OUT_CHANNELS: 256
+  KEYPOINT_ON: False
+  LOAD_PROPOSALS: False
+  MASK_ON: False
+  META_ARCHITECTURE: MVDNet
+  MVDNET:
+    LIDAR_NORM: BN
+    LIDAR_STAGE_OUT_CHANNELS: [64, 128]
+    RADAR_NORM: BN
+    RADAR_STAGE_OUT_CHANNELS: [32, 64]
+    STAGE_LAYERS: [3, 3]
+    STEM_OUT_CHANNELS: 32
+  PANOPTIC_FPN:
+    COMBINE:
+      ENABLED: True
+      INSTANCES_CONFIDENCE_THRESH: 0.5
+      OVERLAP_THRESH: 0.5
+      STUFF_AREA_LIMIT: 4096
+    INSTANCE_LOSS_WEIGHT: 1.0
+  PIXEL_MEAN: [103.53, 116.28, 123.675]
+  PIXEL_STD: [1.0, 1.0, 1.0]
+  PROPOSAL_GENERATOR:
+    MIN_SIZE: 2
+    NAME: MVDNetRRPN
+  RESNETS:
+    DEFORM_MODULATED: False
+    DEFORM_NUM_GROUPS: 1
+    DEFORM_ON_PER_STAGE: [False, False, False, False]
+    DEPTH: 50
+    NORM: FrozenBN
+    NUM_GROUPS: 1
+    OUT_FEATURES: ['res4']
+    RES2_OUT_CHANNELS: 256
+    RES5_DILATION: 1
+    STEM_OUT_CHANNELS: 64
+    STRIDE_IN_1X1: True
+    WIDTH_PER_GROUP: 64
+  RETINANET:
+    BBOX_REG_WEIGHTS: (1.0, 1.0, 1.0, 1.0)
+    FOCAL_LOSS_ALPHA: 0.25
+    FOCAL_LOSS_GAMMA: 2.0
+    IN_FEATURES: ['p3', 'p4', 'p5', 'p6', 'p7']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.4, 0.5]
+    NMS_THRESH_TEST: 0.5
+    NUM_CLASSES: 80
+    NUM_CONVS: 4
+    PRIOR_PROB: 0.01
+    SCORE_THRESH_TEST: 0.05
+    SMOOTH_L1_LOSS_BETA: 0.1
+    TOPK_CANDIDATES_TEST: 1000
+  ROI_BOX_CASCADE_HEAD:
+    BBOX_REG_WEIGHTS: ((10.0, 10.0, 5.0, 5.0), (20.0, 20.0, 10.0, 10.0), (30.0, 30.0, 15.0, 15.0))
+    IOUS: (0.5, 0.6, 0.7)
+  ROI_BOX_HEAD:
+    BBOX_REG_WEIGHTS: (10, 10, 5, 5, 1)
+    CLS_AGNOSTIC_BBOX_REG: False
+    CONV_DIM: 256
+    FC_DIM: 1024
+    NAME: MVDNetBoxHead
+    NORM: 
+    NUM_CONV: 0
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignRotated
+    SMOOTH_L1_BETA: 0.0
+    TRAIN_ON_PRED_BOXES: False
+  ROI_HEADS:
+    BATCH_SIZE_PER_IMAGE: 256
+    IN_FEATURES: ['radar_rcnn', 'lidar_rcnn']
+    IOU_LABELS: [0, 1]
+    IOU_THRESHOLDS: [0.5]
+    NAME: MVDNetROIHeads
+    NMS_THRESH_TEST: 0.2
+    NUM_CLASSES: 1
+    POSITIVE_FRACTION: 0.25
+    PROPOSAL_APPEND_GT: True
+    SCORE_THRESH_TEST: 0.1
+  ROI_KEYPOINT_HEAD:
+    CONV_DIMS: (512, 512, 512, 512, 512, 512, 512, 512)
+    LOSS_WEIGHT: 1.0
+    MIN_KEYPOINTS_PER_IMAGE: 1
+    NAME: KRCNNConvDeconvUpsampleHead
+    NORMALIZE_LOSS_BY_VISIBLE_KEYPOINTS: True
+    NUM_KEYPOINTS: 17
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  ROI_MASK_HEAD:
+    CLS_AGNOSTIC_MASK: False
+    CONV_DIM: 256
+    NAME: MaskRCNNConvUpsampleHead
+    NORM: 
+    NUM_CONV: 0
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  RPN:
+    BATCH_SIZE_PER_IMAGE: 256
+    BBOX_REG_WEIGHTS: (1, 1, 1, 1, 1)
+    BOUNDARY_THRESH: -1
+    HEAD_NAME: StandardRPNHead
+    IN_FEATURES: ['radar_rpn', 'lidar_rpn']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.45, 0.55]
+    LOSS_WEIGHT: 1.0
+    NMS_THRESH: 0.7
+    POSITIVE_FRACTION: 0.5
+    POST_NMS_TOPK_TEST: 500
+    POST_NMS_TOPK_TRAIN: 1000
+    PRE_NMS_TOPK_TEST: 3000
+    PRE_NMS_TOPK_TRAIN: 6000
+    SMOOTH_L1_BETA: 0.0
+  SEM_SEG_HEAD:
+    COMMON_STRIDE: 4
+    CONVS_DIM: 128
+    IGNORE_VALUE: 255
+    IN_FEATURES: ['p2', 'p3', 'p4', 'p5']
+    LOSS_WEIGHT: 1.0
+    NAME: SemSegFPNHead
+    NORM: GN
+    NUM_CLASSES: 54
+  WEIGHTS: 
+OUTPUT_DIR: ./output/mvdnet/
+SEED: -1
+SOLVER:
+  BASE_LR: 0.01
+  BIAS_LR_FACTOR: 1.0
+  CHECKPOINT_PERIOD: 10000
+  CLIP_GRADIENTS:
+    CLIP_TYPE: value
+    CLIP_VALUE: 1.0
+    ENABLED: False
+    NORM_TYPE: 2.0
+  GAMMA: 0.1
+  IMS_PER_BATCH: 1
+  LR_SCHEDULER_NAME: WarmupMultiStepLR
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  STEPS: (40000, 80000)
+  WARMUP_FACTOR: 0.001
+  WARMUP_ITERS: 1000
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0001
+  WEIGHT_DECAY_BIAS: 0.0001
+  WEIGHT_DECAY_NORM: 0.0
+TEST:
+  AUG:
+    ENABLED: False
+    FLIP: True
+    MAX_SIZE: 4000
+    MIN_SIZES: (400, 500, 600, 700, 800, 900, 1000, 1100, 1200)
+  DETECTIONS_PER_IMAGE: 100
+  EVAL_PERIOD: 0
+  EXPECTED_RESULTS: []
+  KEYPOINT_OKS_SIGMAS: []
+  PRECISE_BN:
+    ENABLED: False
+    NUM_ITER: 200
+VERSION: 2
+VIS_PERIOD: 0
+[12/03 09:11:44] detectron2 INFO: Full config saved to ./output/mvdnet/config.yaml
+[12/03 09:11:44] d2.utils.env INFO: Using a generated random seed 44833605
+[12/03 09:13:43] detectron2 INFO: Rank of current process: 0. World size: 1
+[12/03 09:13:43] detectron2 INFO: Environment info:
+------------------------  ---------------------------------------------------------------------------------------------------------------------
+sys.platform              linux
+Python                    3.10.14 (main, May  6 2024, 19:42:50) [GCC 11.2.0]
+numpy                     1.26.4
+detectron2                0.1.1 @/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2
+detectron2 compiler       GCC 11.4
+detectron2 CUDA compiler  not available
+detectron2 arch flags     /home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/_C.cpython-310-x86_64-linux-gnu.so; cannot find cuobjdump
+DETECTRON2_ENV_MODULE     <not set>
+PyTorch                   2.3.1 @/opt/conda/lib/python3.10/site-packages/torch
+PyTorch debug build       False
+CUDA available            True
+GPU 0                     NVIDIA RTX A6000
+CUDA_HOME                 /apps/software/standard/core/cuda/11.8.0
+Pillow                    9.0.0
+torchvision               0.18.1 @/opt/conda/lib/python3.10/site-packages/torchvision
+torchvision arch flags    /opt/conda/lib/python3.10/site-packages/torchvision/_C.so; cannot find cuobjdump
+------------------------  ---------------------------------------------------------------------------------------------------------------------
+PyTorch built with:
+  - GCC 9.3
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2023.1-Product Build 20230303 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.3.6 (Git Hash 86e6af5974177e513fd3fee58425e1063e7f1361)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.8
+  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_37,code=compute_37
+  - CuDNN 8.7
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.8, CUDNN_VERSION=8.7.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=2.3.1, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, 
+
+[12/03 09:13:43] detectron2 INFO: Command line arguments: Namespace(config_file='./configs/train_config.yaml', resume=False, eval_only=False, num_gpus=1, num_machines=1, machine_rank=0, dist_url='tcp://127.0.0.1:55975', opts=[])
+[12/03 09:13:43] detectron2 INFO: Contents of args.config_file=./configs/train_config.yaml:
+INPUT:
+  EVAL_BETA: 0.0
+  HISTORY_ON: True
+  NUM_HISTORY: 4
+  LIDAR:
+    FOG:
+      G: 0.45
+      N: 0.02
+      D_MIN: 2
+      FRACTION_RANDOM: 0.05
+      FOG_RATIO: 0.5
+      BETA_RANGE: [0.005, 0.08]
+    PROJECTION:
+      DELTA_L: 0.2
+      PIXEL_L: 320
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      DELTA_H: 0.1
+MODEL:
+  META_ARCHITECTURE: "MVDNet"
+  BACKBONE:
+    NAME: build_mvdnet_backbone
+  MVDNET:
+    STEM_OUT_CHANNELS: 32
+    STAGE_LAYERS: [3,3]
+    RADAR_STAGE_OUT_CHANNELS: [32,64]
+    LIDAR_STAGE_OUT_CHANNELS: [64,128]
+    RADAR_NORM: "BN"
+    LIDAR_NORM: "BN"
+  ANCHOR_GENERATOR:
+    NAME: RotatedAnchorGenerator
+    ANGLES: [[-90, -45, 0, 45]]
+    SIZES: [[26]] # Pixels
+    ASPECT_RATIOS: [[2]]
+  PROPOSAL_GENERATOR:
+    NAME: MVDNetRRPN
+    MIN_SIZE: 2
+  RPN:
+    BBOX_REG_WEIGHTS: (1,1,1,1,1)
+    IN_FEATURES: ["radar_rpn", "lidar_rpn"]
+    PRE_NMS_TOPK_TRAIN: 6000
+    PRE_NMS_TOPK_TEST: 3000
+    POST_NMS_TOPK_TRAIN: 1000
+    POST_NMS_TOPK_TEST: 500
+    IOU_THRESHOLDS: [0.45, 0.55]
+  ROI_HEADS:
+    NAME: MVDNetROIHeads
+    IN_FEATURES: ["radar_rcnn", "lidar_rcnn"]
+    BATCH_SIZE_PER_IMAGE: 256
+    NUM_CLASSES: 1
+    NMS_THRESH_TEST: 0.2
+    SCORE_THRESH_TEST: 0.1
+  ROI_BOX_HEAD:
+    NAME: MVDNetBoxHead
+    POOLER_TYPE: ROIAlignRotated
+    BBOX_REG_WEIGHTS: (10,10,5,5,1)
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+DATASETS:
+  TRAIN: ("robotcar_train",)
+  TEST: ("robotcar_eval",)
+SOLVER:
+  IMS_PER_BATCH: 1
+  BASE_LR: 0.01
+  MAX_ITER: 120000
+  STEPS: (40000,80000)
+  CHECKPOINT_PERIOD: 10000
+OUTPUT_DIR: ./output/mvdnet/
+
+[12/03 09:13:43] detectron2 INFO: Running with full config:
+CUDNN_BENCHMARK: False
+DATALOADER:
+  ASPECT_RATIO_GROUPING: True
+  FILTER_EMPTY_ANNOTATIONS: True
+  NUM_WORKERS: 4
+  REPEAT_THRESHOLD: 0.0
+  SAMPLER_TRAIN: TrainingSampler
+DATASETS:
+  PRECOMPUTED_PROPOSAL_TOPK_TEST: 1000
+  PRECOMPUTED_PROPOSAL_TOPK_TRAIN: 2000
+  PROPOSAL_FILES_TEST: ()
+  PROPOSAL_FILES_TRAIN: ()
+  TEST: ('robotcar_eval',)
+  TRAIN: ('robotcar_train',)
+GLOBAL:
+  HACK: 1.0
+INPUT:
+  CROP:
+    ENABLED: False
+    SIZE: [0.9, 0.9]
+    TYPE: relative_range
+  EVAL_BETA: 0.0
+  FORMAT: BGR
+  HISTORY_ON: True
+  LIDAR:
+    FOG:
+      BETA_RANGE: [0.005, 0.08]
+      D_MIN: 2
+      FOG_RATIO: 0.5
+      FRACTION_RANDOM: 0.05
+      G: 0.45
+      N: 0.02
+    PROJECTION:
+      DELTA_H: 0.1
+      DELTA_L: 0.2
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      PIXEL_L: 320
+  MASK_FORMAT: polygon
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: (800,)
+  MIN_SIZE_TRAIN_SAMPLING: choice
+  NUM_HISTORY: 4
+MODEL:
+  ANCHOR_GENERATOR:
+    ANGLES: [[-90, -45, 0, 45]]
+    ASPECT_RATIOS: [[2]]
+    NAME: RotatedAnchorGenerator
+    OFFSET: 0.0
+    SIZES: [[26]]
+  BACKBONE:
+    FREEZE_AT: 2
+    NAME: build_mvdnet_backbone
+  DEVICE: cuda
+  FPN:
+    FUSE_TYPE: sum
+    IN_FEATURES: []
+    NORM: 
+    OUT_CHANNELS: 256
+  KEYPOINT_ON: False
+  LOAD_PROPOSALS: False
+  MASK_ON: False
+  META_ARCHITECTURE: MVDNet
+  MVDNET:
+    LIDAR_NORM: BN
+    LIDAR_STAGE_OUT_CHANNELS: [64, 128]
+    RADAR_NORM: BN
+    RADAR_STAGE_OUT_CHANNELS: [32, 64]
+    STAGE_LAYERS: [3, 3]
+    STEM_OUT_CHANNELS: 32
+  PANOPTIC_FPN:
+    COMBINE:
+      ENABLED: True
+      INSTANCES_CONFIDENCE_THRESH: 0.5
+      OVERLAP_THRESH: 0.5
+      STUFF_AREA_LIMIT: 4096
+    INSTANCE_LOSS_WEIGHT: 1.0
+  PIXEL_MEAN: [103.53, 116.28, 123.675]
+  PIXEL_STD: [1.0, 1.0, 1.0]
+  PROPOSAL_GENERATOR:
+    MIN_SIZE: 2
+    NAME: MVDNetRRPN
+  RESNETS:
+    DEFORM_MODULATED: False
+    DEFORM_NUM_GROUPS: 1
+    DEFORM_ON_PER_STAGE: [False, False, False, False]
+    DEPTH: 50
+    NORM: FrozenBN
+    NUM_GROUPS: 1
+    OUT_FEATURES: ['res4']
+    RES2_OUT_CHANNELS: 256
+    RES5_DILATION: 1
+    STEM_OUT_CHANNELS: 64
+    STRIDE_IN_1X1: True
+    WIDTH_PER_GROUP: 64
+  RETINANET:
+    BBOX_REG_WEIGHTS: (1.0, 1.0, 1.0, 1.0)
+    FOCAL_LOSS_ALPHA: 0.25
+    FOCAL_LOSS_GAMMA: 2.0
+    IN_FEATURES: ['p3', 'p4', 'p5', 'p6', 'p7']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.4, 0.5]
+    NMS_THRESH_TEST: 0.5
+    NUM_CLASSES: 80
+    NUM_CONVS: 4
+    PRIOR_PROB: 0.01
+    SCORE_THRESH_TEST: 0.05
+    SMOOTH_L1_LOSS_BETA: 0.1
+    TOPK_CANDIDATES_TEST: 1000
+  ROI_BOX_CASCADE_HEAD:
+    BBOX_REG_WEIGHTS: ((10.0, 10.0, 5.0, 5.0), (20.0, 20.0, 10.0, 10.0), (30.0, 30.0, 15.0, 15.0))
+    IOUS: (0.5, 0.6, 0.7)
+  ROI_BOX_HEAD:
+    BBOX_REG_WEIGHTS: (10, 10, 5, 5, 1)
+    CLS_AGNOSTIC_BBOX_REG: False
+    CONV_DIM: 256
+    FC_DIM: 1024
+    NAME: MVDNetBoxHead
+    NORM: 
+    NUM_CONV: 0
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignRotated
+    SMOOTH_L1_BETA: 0.0
+    TRAIN_ON_PRED_BOXES: False
+  ROI_HEADS:
+    BATCH_SIZE_PER_IMAGE: 256
+    IN_FEATURES: ['radar_rcnn', 'lidar_rcnn']
+    IOU_LABELS: [0, 1]
+    IOU_THRESHOLDS: [0.5]
+    NAME: MVDNetROIHeads
+    NMS_THRESH_TEST: 0.2
+    NUM_CLASSES: 1
+    POSITIVE_FRACTION: 0.25
+    PROPOSAL_APPEND_GT: True
+    SCORE_THRESH_TEST: 0.1
+  ROI_KEYPOINT_HEAD:
+    CONV_DIMS: (512, 512, 512, 512, 512, 512, 512, 512)
+    LOSS_WEIGHT: 1.0
+    MIN_KEYPOINTS_PER_IMAGE: 1
+    NAME: KRCNNConvDeconvUpsampleHead
+    NORMALIZE_LOSS_BY_VISIBLE_KEYPOINTS: True
+    NUM_KEYPOINTS: 17
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  ROI_MASK_HEAD:
+    CLS_AGNOSTIC_MASK: False
+    CONV_DIM: 256
+    NAME: MaskRCNNConvUpsampleHead
+    NORM: 
+    NUM_CONV: 0
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  RPN:
+    BATCH_SIZE_PER_IMAGE: 256
+    BBOX_REG_WEIGHTS: (1, 1, 1, 1, 1)
+    BOUNDARY_THRESH: -1
+    HEAD_NAME: StandardRPNHead
+    IN_FEATURES: ['radar_rpn', 'lidar_rpn']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.45, 0.55]
+    LOSS_WEIGHT: 1.0
+    NMS_THRESH: 0.7
+    POSITIVE_FRACTION: 0.5
+    POST_NMS_TOPK_TEST: 500
+    POST_NMS_TOPK_TRAIN: 1000
+    PRE_NMS_TOPK_TEST: 3000
+    PRE_NMS_TOPK_TRAIN: 6000
+    SMOOTH_L1_BETA: 0.0
+  SEM_SEG_HEAD:
+    COMMON_STRIDE: 4
+    CONVS_DIM: 128
+    IGNORE_VALUE: 255
+    IN_FEATURES: ['p2', 'p3', 'p4', 'p5']
+    LOSS_WEIGHT: 1.0
+    NAME: SemSegFPNHead
+    NORM: GN
+    NUM_CLASSES: 54
+  WEIGHTS: 
+OUTPUT_DIR: ./output/mvdnet/
+SEED: -1
+SOLVER:
+  BASE_LR: 0.01
+  BIAS_LR_FACTOR: 1.0
+  CHECKPOINT_PERIOD: 10000
+  CLIP_GRADIENTS:
+    CLIP_TYPE: value
+    CLIP_VALUE: 1.0
+    ENABLED: False
+    NORM_TYPE: 2.0
+  GAMMA: 0.1
+  IMS_PER_BATCH: 1
+  LR_SCHEDULER_NAME: WarmupMultiStepLR
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  STEPS: (40000, 80000)
+  WARMUP_FACTOR: 0.001
+  WARMUP_ITERS: 1000
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0001
+  WEIGHT_DECAY_BIAS: 0.0001
+  WEIGHT_DECAY_NORM: 0.0
+TEST:
+  AUG:
+    ENABLED: False
+    FLIP: True
+    MAX_SIZE: 4000
+    MIN_SIZES: (400, 500, 600, 700, 800, 900, 1000, 1100, 1200)
+  DETECTIONS_PER_IMAGE: 100
+  EVAL_PERIOD: 0
+  EXPECTED_RESULTS: []
+  KEYPOINT_OKS_SIGMAS: []
+  PRECISE_BN:
+    ENABLED: False
+    NUM_ITER: 200
+VERSION: 2
+VIS_PERIOD: 0
+[12/03 09:13:43] detectron2 INFO: Full config saved to ./output/mvdnet/config.yaml
+[12/03 09:13:43] d2.utils.env INFO: Using a generated random seed 44406802
+[12/03 09:13:44] d2.engine.defaults INFO: Model:
+MVDNet(
+  (backbone): MVDNetBackbone(
+    (radar_backbone): VGG(
+      (stem): MVDNetStem(
+        (conv1): Conv2d(
+          1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): FrozenBatchNorm2d(num_features=32, eps=1e-05)
+        )
+      )
+      (down1): Sequential(
+        (0): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (down2): Sequential(
+        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (1): Conv2d(
+          32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (3): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (up1): ConvTranspose2d(
+        64, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fusion1): Conv2d(
+        64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (final_fusion): Conv2d(
+        160, 32, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (lidar_backbone): VGG(
+      (stem): MVDNetStem(
+        (conv1): Conv2d(
+          36, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): FrozenBatchNorm2d(num_features=32, eps=1e-05)
+        )
+      )
+      (down1): Sequential(
+        (0): Conv2d(
+          32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (down2): Sequential(
+        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (1): Conv2d(
+          64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (3): Conv2d(
+          128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (up1): ConvTranspose2d(
+        128, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fusion1): Conv2d(
+        128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (final_fusion): Conv2d(
+        320, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (proposal_generator): MVDNetRRPN(
+    (radar_rpn_anchor_generator): RotatedAnchorGenerator(
+      (cell_anchors): BufferList()
+    )
+    (lidar_rpn_anchor_generator): RotatedAnchorGenerator(
+      (cell_anchors): BufferList()
+    )
+    (radar_rpn_rpn_head): StandardRPNHead(
+      (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (objectness_logits): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1))
+      (anchor_deltas): Conv2d(32, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (lidar_rpn_rpn_head): StandardRPNHead(
+      (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (objectness_logits): Conv2d(64, 4, kernel_size=(1, 1), stride=(1, 1))
+      (anchor_deltas): Conv2d(64, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+  (roi_heads): MVDNetROIHeads(
+    (box_pooler): ROIPooler(
+      (level_poolers): ModuleList(
+        (0): ROIAlignRotated(output_size=(7, 7), spatial_scale=1.0, sampling_ratio=0)
+      )
+    )
+    (box_head): MVDNetBoxHead(
+      (match_conv): Conv2d(
+        64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (radar_self_attention): SelfAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (lidar_self_attention): SelfAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (radar_cross_attention): CrossAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (lidar_cross_attention): CrossAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (tnn1): Conv3d(
+        64, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (tnn2): Conv3d(
+        32, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (tnn3): Conv3d(
+        32, 32, kernel_size=(5, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fc1): Linear(in_features=1568, out_features=1024, bias=True)
+      (fc2): Linear(in_features=1024, out_features=1024, bias=True)
+    )
+    (box_predictor): FastRCNNOutputLayers(
+      (cls_score): Linear(in_features=1024, out_features=2, bias=True)
+      (bbox_pred): Linear(in_features=1024, out_features=5, bias=True)
+    )
+    (direct_predictor): MVDNetRCNNOutputLayers(
+      (direct_score): Linear(in_features=1024, out_features=2, bias=True)
+    )
+  )
+)
+[12/03 09:13:46] d2.data.build INFO: Removed 367 images with no usable annotations. 6697 images left.
+[12/03 09:13:46] d2.data.build INFO: Distribution of instances among all 1 categories:
+|  category  | #instances   |
+|:----------:|:-------------|
+|    car     | 42928        |
+|            |              |
+[12/03 09:13:46] d2.data.common INFO: Serializing 6697 elements to byte tensors and concatenating them all ...
+[12/03 09:13:46] d2.data.common INFO: Serialized dataset takes 4.72 MiB
+[12/03 09:13:46] d2.data.build INFO: Using training sampler TrainingSampler
+[12/03 09:13:46] fvcore.common.checkpoint INFO: No checkpoint found. Initializing model from scratch
+[12/03 09:13:46] d2.engine.train_loop INFO: Starting training from iteration 0
+[12/03 09:13:49] d2.engine.train_loop ERROR: Exception during training:
+Traceback (most recent call last):
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/engine/train_loop.py", line 132, in train
+    self.run_step()
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/engine/train_loop.py", line 215, in run_step
+    loss_dict = self.model(data)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jmz9sad/cs6501-wireless-project/mvdnet/modeling/meta_arch/mvdnet.py", line 41, in forward
+    proposals, proposal_losses = self.proposal_generator(radar_data, features, gt_instances)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jmz9sad/cs6501-wireless-project/mvdnet/modeling/proposal_generator/mvdnet_rrpn.py", line 180, in forward
+    for loss_key, loss_val in outputs[f].losses().items():
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/modeling/proposal_generator/rpn_outputs.py", line 327, in losses
+    gt_objectness_logits, gt_anchor_deltas = self._get_ground_truth()
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/modeling/proposal_generator/rrpn_outputs.py", line 222, in _get_ground_truth
+    match_quality_matrix = pairwise_iou_rotated(gt_boxes_i, anchors_i)
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/structures/rotated_boxes.py", line 498, in pairwise_iou
+    return pairwise_iou_rotated(boxes1.tensor, boxes2.tensor)
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/layers/rotated_boxes.py", line 23, in pairwise_iou_rotated
+    return _C.box_iou_rotated(boxes1, boxes2)
+RuntimeError: Not compiled with GPU support
+[12/03 09:13:49] d2.engine.hooks INFO: Total training time: 0:00:03 (0:00:00 on hooks)
+[12/03 09:16:20] detectron2 INFO: Rank of current process: 0. World size: 1
+[12/03 09:16:20] detectron2 INFO: Environment info:
+------------------------  ---------------------------------------------------------------------------------------------------------------------
+sys.platform              linux
+Python                    3.10.14 (main, May  6 2024, 19:42:50) [GCC 11.2.0]
+numpy                     1.26.4
+detectron2                0.1.1 @/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2
+detectron2 compiler       GCC 11.4
+detectron2 CUDA compiler  not available
+detectron2 arch flags     /home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/_C.cpython-310-x86_64-linux-gnu.so; cannot find cuobjdump
+DETECTRON2_ENV_MODULE     <not set>
+PyTorch                   2.5.1+cu118 @/home/jmz9sad/.local/lib/python3.10/site-packages/torch
+PyTorch debug build       False
+CUDA available            True
+GPU 0                     NVIDIA RTX A6000
+CUDA_HOME                 /apps/software/standard/core/cuda/11.8.0
+Pillow                    9.0.0
+torchvision               0.20.1+cu118 @/home/jmz9sad/.local/lib/python3.10/site-packages/torchvision
+torchvision arch flags    /home/jmz9sad/.local/lib/python3.10/site-packages/torchvision/_C.so; cannot find cuobjdump
+------------------------  ---------------------------------------------------------------------------------------------------------------------
+PyTorch built with:
+  - GCC 9.3
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2023.1-Product Build 20230303 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.5.3 (Git Hash 66f0cb9eb66affd2da3bf5f8d897376f04aae6af)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.8
+  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_90,code=sm_90
+  - CuDNN 90.1
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.8, CUDNN_VERSION=9.1.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DLIBKINETO_NOXPUPTI=ON -DUSE_FBGEMM -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.5.1, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=1, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, 
+
+[12/03 09:16:20] detectron2 INFO: Command line arguments: Namespace(config_file='./configs/train_config.yaml', resume=False, eval_only=False, num_gpus=1, num_machines=1, machine_rank=0, dist_url='tcp://127.0.0.1:55975', opts=[])
+[12/03 09:16:20] detectron2 INFO: Contents of args.config_file=./configs/train_config.yaml:
+INPUT:
+  EVAL_BETA: 0.0
+  HISTORY_ON: True
+  NUM_HISTORY: 4
+  LIDAR:
+    FOG:
+      G: 0.45
+      N: 0.02
+      D_MIN: 2
+      FRACTION_RANDOM: 0.05
+      FOG_RATIO: 0.5
+      BETA_RANGE: [0.005, 0.08]
+    PROJECTION:
+      DELTA_L: 0.2
+      PIXEL_L: 320
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      DELTA_H: 0.1
+MODEL:
+  META_ARCHITECTURE: "MVDNet"
+  BACKBONE:
+    NAME: build_mvdnet_backbone
+  MVDNET:
+    STEM_OUT_CHANNELS: 32
+    STAGE_LAYERS: [3,3]
+    RADAR_STAGE_OUT_CHANNELS: [32,64]
+    LIDAR_STAGE_OUT_CHANNELS: [64,128]
+    RADAR_NORM: "BN"
+    LIDAR_NORM: "BN"
+  ANCHOR_GENERATOR:
+    NAME: RotatedAnchorGenerator
+    ANGLES: [[-90, -45, 0, 45]]
+    SIZES: [[26]] # Pixels
+    ASPECT_RATIOS: [[2]]
+  PROPOSAL_GENERATOR:
+    NAME: MVDNetRRPN
+    MIN_SIZE: 2
+  RPN:
+    BBOX_REG_WEIGHTS: (1,1,1,1,1)
+    IN_FEATURES: ["radar_rpn", "lidar_rpn"]
+    PRE_NMS_TOPK_TRAIN: 6000
+    PRE_NMS_TOPK_TEST: 3000
+    POST_NMS_TOPK_TRAIN: 1000
+    POST_NMS_TOPK_TEST: 500
+    IOU_THRESHOLDS: [0.45, 0.55]
+  ROI_HEADS:
+    NAME: MVDNetROIHeads
+    IN_FEATURES: ["radar_rcnn", "lidar_rcnn"]
+    BATCH_SIZE_PER_IMAGE: 256
+    NUM_CLASSES: 1
+    NMS_THRESH_TEST: 0.2
+    SCORE_THRESH_TEST: 0.1
+  ROI_BOX_HEAD:
+    NAME: MVDNetBoxHead
+    POOLER_TYPE: ROIAlignRotated
+    BBOX_REG_WEIGHTS: (10,10,5,5,1)
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+DATASETS:
+  TRAIN: ("robotcar_train",)
+  TEST: ("robotcar_eval",)
+SOLVER:
+  IMS_PER_BATCH: 1
+  BASE_LR: 0.01
+  MAX_ITER: 120000
+  STEPS: (40000,80000)
+  CHECKPOINT_PERIOD: 10000
+OUTPUT_DIR: ./output/mvdnet/
+
+[12/03 09:16:20] detectron2 INFO: Running with full config:
+CUDNN_BENCHMARK: False
+DATALOADER:
+  ASPECT_RATIO_GROUPING: True
+  FILTER_EMPTY_ANNOTATIONS: True
+  NUM_WORKERS: 4
+  REPEAT_THRESHOLD: 0.0
+  SAMPLER_TRAIN: TrainingSampler
+DATASETS:
+  PRECOMPUTED_PROPOSAL_TOPK_TEST: 1000
+  PRECOMPUTED_PROPOSAL_TOPK_TRAIN: 2000
+  PROPOSAL_FILES_TEST: ()
+  PROPOSAL_FILES_TRAIN: ()
+  TEST: ('robotcar_eval',)
+  TRAIN: ('robotcar_train',)
+GLOBAL:
+  HACK: 1.0
+INPUT:
+  CROP:
+    ENABLED: False
+    SIZE: [0.9, 0.9]
+    TYPE: relative_range
+  EVAL_BETA: 0.0
+  FORMAT: BGR
+  HISTORY_ON: True
+  LIDAR:
+    FOG:
+      BETA_RANGE: [0.005, 0.08]
+      D_MIN: 2
+      FOG_RATIO: 0.5
+      FRACTION_RANDOM: 0.05
+      G: 0.45
+      N: 0.02
+    PROJECTION:
+      DELTA_H: 0.1
+      DELTA_L: 0.2
+      HEIGHT_LB: -1.0
+      HEIGHT_UB: 2.5
+      PIXEL_L: 320
+  MASK_FORMAT: polygon
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: (800,)
+  MIN_SIZE_TRAIN_SAMPLING: choice
+  NUM_HISTORY: 4
+MODEL:
+  ANCHOR_GENERATOR:
+    ANGLES: [[-90, -45, 0, 45]]
+    ASPECT_RATIOS: [[2]]
+    NAME: RotatedAnchorGenerator
+    OFFSET: 0.0
+    SIZES: [[26]]
+  BACKBONE:
+    FREEZE_AT: 2
+    NAME: build_mvdnet_backbone
+  DEVICE: cuda
+  FPN:
+    FUSE_TYPE: sum
+    IN_FEATURES: []
+    NORM: 
+    OUT_CHANNELS: 256
+  KEYPOINT_ON: False
+  LOAD_PROPOSALS: False
+  MASK_ON: False
+  META_ARCHITECTURE: MVDNet
+  MVDNET:
+    LIDAR_NORM: BN
+    LIDAR_STAGE_OUT_CHANNELS: [64, 128]
+    RADAR_NORM: BN
+    RADAR_STAGE_OUT_CHANNELS: [32, 64]
+    STAGE_LAYERS: [3, 3]
+    STEM_OUT_CHANNELS: 32
+  PANOPTIC_FPN:
+    COMBINE:
+      ENABLED: True
+      INSTANCES_CONFIDENCE_THRESH: 0.5
+      OVERLAP_THRESH: 0.5
+      STUFF_AREA_LIMIT: 4096
+    INSTANCE_LOSS_WEIGHT: 1.0
+  PIXEL_MEAN: [103.53, 116.28, 123.675]
+  PIXEL_STD: [1.0, 1.0, 1.0]
+  PROPOSAL_GENERATOR:
+    MIN_SIZE: 2
+    NAME: MVDNetRRPN
+  RESNETS:
+    DEFORM_MODULATED: False
+    DEFORM_NUM_GROUPS: 1
+    DEFORM_ON_PER_STAGE: [False, False, False, False]
+    DEPTH: 50
+    NORM: FrozenBN
+    NUM_GROUPS: 1
+    OUT_FEATURES: ['res4']
+    RES2_OUT_CHANNELS: 256
+    RES5_DILATION: 1
+    STEM_OUT_CHANNELS: 64
+    STRIDE_IN_1X1: True
+    WIDTH_PER_GROUP: 64
+  RETINANET:
+    BBOX_REG_WEIGHTS: (1.0, 1.0, 1.0, 1.0)
+    FOCAL_LOSS_ALPHA: 0.25
+    FOCAL_LOSS_GAMMA: 2.0
+    IN_FEATURES: ['p3', 'p4', 'p5', 'p6', 'p7']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.4, 0.5]
+    NMS_THRESH_TEST: 0.5
+    NUM_CLASSES: 80
+    NUM_CONVS: 4
+    PRIOR_PROB: 0.01
+    SCORE_THRESH_TEST: 0.05
+    SMOOTH_L1_LOSS_BETA: 0.1
+    TOPK_CANDIDATES_TEST: 1000
+  ROI_BOX_CASCADE_HEAD:
+    BBOX_REG_WEIGHTS: ((10.0, 10.0, 5.0, 5.0), (20.0, 20.0, 10.0, 10.0), (30.0, 30.0, 15.0, 15.0))
+    IOUS: (0.5, 0.6, 0.7)
+  ROI_BOX_HEAD:
+    BBOX_REG_WEIGHTS: (10, 10, 5, 5, 1)
+    CLS_AGNOSTIC_BBOX_REG: False
+    CONV_DIM: 256
+    FC_DIM: 1024
+    NAME: MVDNetBoxHead
+    NORM: 
+    NUM_CONV: 0
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignRotated
+    SMOOTH_L1_BETA: 0.0
+    TRAIN_ON_PRED_BOXES: False
+  ROI_HEADS:
+    BATCH_SIZE_PER_IMAGE: 256
+    IN_FEATURES: ['radar_rcnn', 'lidar_rcnn']
+    IOU_LABELS: [0, 1]
+    IOU_THRESHOLDS: [0.5]
+    NAME: MVDNetROIHeads
+    NMS_THRESH_TEST: 0.2
+    NUM_CLASSES: 1
+    POSITIVE_FRACTION: 0.25
+    PROPOSAL_APPEND_GT: True
+    SCORE_THRESH_TEST: 0.1
+  ROI_KEYPOINT_HEAD:
+    CONV_DIMS: (512, 512, 512, 512, 512, 512, 512, 512)
+    LOSS_WEIGHT: 1.0
+    MIN_KEYPOINTS_PER_IMAGE: 1
+    NAME: KRCNNConvDeconvUpsampleHead
+    NORMALIZE_LOSS_BY_VISIBLE_KEYPOINTS: True
+    NUM_KEYPOINTS: 17
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  ROI_MASK_HEAD:
+    CLS_AGNOSTIC_MASK: False
+    CONV_DIM: 256
+    NAME: MaskRCNNConvUpsampleHead
+    NORM: 
+    NUM_CONV: 0
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  RPN:
+    BATCH_SIZE_PER_IMAGE: 256
+    BBOX_REG_WEIGHTS: (1, 1, 1, 1, 1)
+    BOUNDARY_THRESH: -1
+    HEAD_NAME: StandardRPNHead
+    IN_FEATURES: ['radar_rpn', 'lidar_rpn']
+    IOU_LABELS: [0, -1, 1]
+    IOU_THRESHOLDS: [0.45, 0.55]
+    LOSS_WEIGHT: 1.0
+    NMS_THRESH: 0.7
+    POSITIVE_FRACTION: 0.5
+    POST_NMS_TOPK_TEST: 500
+    POST_NMS_TOPK_TRAIN: 1000
+    PRE_NMS_TOPK_TEST: 3000
+    PRE_NMS_TOPK_TRAIN: 6000
+    SMOOTH_L1_BETA: 0.0
+  SEM_SEG_HEAD:
+    COMMON_STRIDE: 4
+    CONVS_DIM: 128
+    IGNORE_VALUE: 255
+    IN_FEATURES: ['p2', 'p3', 'p4', 'p5']
+    LOSS_WEIGHT: 1.0
+    NAME: SemSegFPNHead
+    NORM: GN
+    NUM_CLASSES: 54
+  WEIGHTS: 
+OUTPUT_DIR: ./output/mvdnet/
+SEED: -1
+SOLVER:
+  BASE_LR: 0.01
+  BIAS_LR_FACTOR: 1.0
+  CHECKPOINT_PERIOD: 10000
+  CLIP_GRADIENTS:
+    CLIP_TYPE: value
+    CLIP_VALUE: 1.0
+    ENABLED: False
+    NORM_TYPE: 2.0
+  GAMMA: 0.1
+  IMS_PER_BATCH: 1
+  LR_SCHEDULER_NAME: WarmupMultiStepLR
+  MAX_ITER: 120000
+  MOMENTUM: 0.9
+  STEPS: (40000, 80000)
+  WARMUP_FACTOR: 0.001
+  WARMUP_ITERS: 1000
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0001
+  WEIGHT_DECAY_BIAS: 0.0001
+  WEIGHT_DECAY_NORM: 0.0
+TEST:
+  AUG:
+    ENABLED: False
+    FLIP: True
+    MAX_SIZE: 4000
+    MIN_SIZES: (400, 500, 600, 700, 800, 900, 1000, 1100, 1200)
+  DETECTIONS_PER_IMAGE: 100
+  EVAL_PERIOD: 0
+  EXPECTED_RESULTS: []
+  KEYPOINT_OKS_SIGMAS: []
+  PRECISE_BN:
+    ENABLED: False
+    NUM_ITER: 200
+VERSION: 2
+VIS_PERIOD: 0
+[12/03 09:16:20] detectron2 INFO: Full config saved to ./output/mvdnet/config.yaml
+[12/03 09:16:20] d2.utils.env INFO: Using a generated random seed 21151581
+[12/03 09:16:20] d2.engine.defaults INFO: Model:
+MVDNet(
+  (backbone): MVDNetBackbone(
+    (radar_backbone): VGG(
+      (stem): MVDNetStem(
+        (conv1): Conv2d(
+          1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): FrozenBatchNorm2d(num_features=32, eps=1e-05)
+        )
+      )
+      (down1): Sequential(
+        (0): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (down2): Sequential(
+        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (1): Conv2d(
+          32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (3): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (up1): ConvTranspose2d(
+        64, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fusion1): Conv2d(
+        64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (final_fusion): Conv2d(
+        160, 32, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (lidar_backbone): VGG(
+      (stem): MVDNetStem(
+        (conv1): Conv2d(
+          36, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): FrozenBatchNorm2d(num_features=32, eps=1e-05)
+        )
+      )
+      (down1): Sequential(
+        (0): Conv2d(
+          32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (down2): Sequential(
+        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (1): Conv2d(
+          64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (2): Conv2d(
+          128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (3): Conv2d(
+          128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+          (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (up1): ConvTranspose2d(
+        128, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fusion1): Conv2d(
+        128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (final_fusion): Conv2d(
+        320, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (proposal_generator): MVDNetRRPN(
+    (radar_rpn_anchor_generator): RotatedAnchorGenerator(
+      (cell_anchors): BufferList()
+    )
+    (lidar_rpn_anchor_generator): RotatedAnchorGenerator(
+      (cell_anchors): BufferList()
+    )
+    (radar_rpn_rpn_head): StandardRPNHead(
+      (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (objectness_logits): Conv2d(32, 4, kernel_size=(1, 1), stride=(1, 1))
+      (anchor_deltas): Conv2d(32, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (lidar_rpn_rpn_head): StandardRPNHead(
+      (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (objectness_logits): Conv2d(64, 4, kernel_size=(1, 1), stride=(1, 1))
+      (anchor_deltas): Conv2d(64, 20, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+  (roi_heads): MVDNetROIHeads(
+    (box_pooler): ROIPooler(
+      (level_poolers): ModuleList(
+        (0): ROIAlignRotated(output_size=(7, 7), spatial_scale=1.0, sampling_ratio=0)
+      )
+    )
+    (box_head): MVDNetBoxHead(
+      (match_conv): Conv2d(
+        64, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (radar_self_attention): SelfAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (lidar_self_attention): SelfAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (radar_cross_attention): CrossAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (lidar_cross_attention): CrossAttentionBlock(
+        (g): Linear(in_features=1568, out_features=196, bias=True)
+        (theta): Linear(in_features=1568, out_features=196, bias=True)
+        (phi): Linear(in_features=1568, out_features=196, bias=True)
+        (W): Linear(in_features=196, out_features=1568, bias=True)
+      )
+      (tnn1): Conv3d(
+        64, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (tnn2): Conv3d(
+        32, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (tnn3): Conv3d(
+        32, 32, kernel_size=(5, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False
+        (norm): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (fc1): Linear(in_features=1568, out_features=1024, bias=True)
+      (fc2): Linear(in_features=1024, out_features=1024, bias=True)
+    )
+    (box_predictor): FastRCNNOutputLayers(
+      (cls_score): Linear(in_features=1024, out_features=2, bias=True)
+      (bbox_pred): Linear(in_features=1024, out_features=5, bias=True)
+    )
+    (direct_predictor): MVDNetRCNNOutputLayers(
+      (direct_score): Linear(in_features=1024, out_features=2, bias=True)
+    )
+  )
+)
+[12/03 09:16:23] d2.data.build INFO: Removed 367 images with no usable annotations. 6697 images left.
+[12/03 09:16:23] d2.data.build INFO: Distribution of instances among all 1 categories:
+|  category  | #instances   |
+|:----------:|:-------------|
+|    car     | 42928        |
+|            |              |
+[12/03 09:16:23] d2.data.common INFO: Serializing 6697 elements to byte tensors and concatenating them all ...
+[12/03 09:16:23] d2.data.common INFO: Serialized dataset takes 4.72 MiB
+[12/03 09:16:23] d2.data.build INFO: Using training sampler TrainingSampler
+[12/03 09:16:23] fvcore.common.checkpoint INFO: No checkpoint found. Initializing model from scratch
+[12/03 09:16:23] d2.engine.train_loop INFO: Starting training from iteration 0
+[12/03 09:16:25] d2.engine.train_loop ERROR: Exception during training:
+Traceback (most recent call last):
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/engine/train_loop.py", line 132, in train
+    self.run_step()
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/engine/train_loop.py", line 215, in run_step
+    loss_dict = self.model(data)
+  File "/home/jmz9sad/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/jmz9sad/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jmz9sad/cs6501-wireless-project/mvdnet/modeling/meta_arch/mvdnet.py", line 41, in forward
+    proposals, proposal_losses = self.proposal_generator(radar_data, features, gt_instances)
+  File "/home/jmz9sad/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/jmz9sad/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jmz9sad/cs6501-wireless-project/mvdnet/modeling/proposal_generator/mvdnet_rrpn.py", line 180, in forward
+    for loss_key, loss_val in outputs[f].losses().items():
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/modeling/proposal_generator/rpn_outputs.py", line 327, in losses
+    gt_objectness_logits, gt_anchor_deltas = self._get_ground_truth()
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/modeling/proposal_generator/rrpn_outputs.py", line 222, in _get_ground_truth
+    match_quality_matrix = pairwise_iou_rotated(gt_boxes_i, anchors_i)
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/structures/rotated_boxes.py", line 498, in pairwise_iou
+    return pairwise_iou_rotated(boxes1.tensor, boxes2.tensor)
+  File "/home/jmz9sad/cs6501-wireless-project/detectron2/detectron2/layers/rotated_boxes.py", line 23, in pairwise_iou_rotated
+    return _C.box_iou_rotated(boxes1, boxes2)
+RuntimeError: Not compiled with GPU support
+[12/03 09:16:25] d2.engine.hooks INFO: Total training time: 0:00:02 (0:00:00 on hooks)

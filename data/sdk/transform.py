@@ -67,12 +67,12 @@ def se3_transform(xyzrpy):
 
 def inverse_transform(rot, pos):
     rot_inv = rot.inv()
-    pos_inv = np.array((-np.matrix(rot_inv.as_dcm()) * np.matrix(pos).T).T)[0]
+    pos_inv = np.array((-np.matrix(rot_inv.as_matrix()) * np.matrix(pos).T).T)[0]
     return rot_inv, pos_inv
 
 def compose_transform(rot1, pos1, rot2, pos2):
     rot_com = rot2.__mul__(rot1)
-    pos_com = np.array((np.matrix(rot2.as_dcm()) * np.matrix(pos1).T + np.matrix(pos2).T).T)[0]
+    pos_com = np.array((np.matrix(rot2.as_matrix()) * np.matrix(pos1).T + np.matrix(pos2).T).T)[0]
     return rot_com, pos_com
 
 def frame_transform(src_ts, dst_ts, vo):

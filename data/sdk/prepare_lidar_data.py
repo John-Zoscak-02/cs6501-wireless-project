@@ -74,7 +74,7 @@ def main(args):
             frame_rot, frame_pos = frame_transform(left_lidar_timestamp_closest, right_lidar_timestamp[right_lidar_timestamp_j], lidar_odometry)
             frame_rot, frame_pos = compose_transform(LEFT_LIDAR_ROT, LEFT_LIDAR_POS, frame_rot, frame_pos)
             frame_rot, frame_pos = compose_transform(frame_rot, frame_pos, RIGHT_LIDAR_INV_ROT, RIGHT_LIDAR_INV_POS)
-            left_lidar_data[0:3,:] = np.matrix(frame_rot.as_dcm()) * left_lidar_data[0:3,:] + np.tile(np.matrix(frame_pos).T, (1, left_lidar_data.shape[1]))
+            left_lidar_data[0:3,:] = np.matrix(frame_rot.as_matrix()) * left_lidar_data[0:3,:] + np.tile(np.matrix(frame_pos).T, (1, left_lidar_data.shape[1]))
 
             lidar_data = np.concatenate((right_lidar_data, left_lidar_data), axis=1)
             lidar_self = np.logical_and(np.logical_and(lidar_data[0,:] > -2.1, lidar_data[0,:] < 2), np.logical_and(lidar_data[1,:] > -0.5, lidar_data[1,:] < 1.4))
@@ -86,7 +86,7 @@ def main(args):
             frame_rot, frame_pos = frame_transform(right_lidar_timestamp[right_lidar_timestamp_j], radar_timestamp[radar_timestamp_i], lidar_odometry)
             frame_rot, frame_pos = compose_transform(RIGHT_LIDAR_ROT, RIGHT_LIDAR_POS, frame_rot, frame_pos)
             frame_rot, frame_pos = compose_transform(frame_rot, frame_pos, RADAR_INV_ROT, RADAR_INV_POS)
-            frame_rot = np.matrix(frame_rot.as_dcm())
+            frame_rot = np.matrix(frame_rot.as_matrix())
             frame_pos = np.matrix(frame_pos).T
             frame_pos = np.tile(frame_pos, (1, lidar_location.shape[1]))
 

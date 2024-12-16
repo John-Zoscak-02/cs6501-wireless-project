@@ -274,7 +274,7 @@ MODEL:
     NAME: SemSegFPNHead
     NORM: GN
     NUM_CLASSES: 54
-  WEIGHTS: ''
+  WEIGHTS: ./output/mvdnet/model_final.pth
 OUTPUT_DIR: ./output/mvdnet/
 SEED: -1
 SOLVER:

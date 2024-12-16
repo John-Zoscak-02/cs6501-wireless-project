@@ -25,7 +25,7 @@ INPUT:
     TYPE: relative_range
   EVAL_BETA: 0.0
   FORMAT: BGR
-  HISTORY_ON: true
+  HISTORY_ON: false
   LIDAR:
     FOG:
       BETA_RANGE:

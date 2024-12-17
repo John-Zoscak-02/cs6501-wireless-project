@@ -10,11 +10,10 @@
 #SBATCH -J "train_only_mvd"   # job name
 #SBATCH --account=cs_6501_ws4iot   # allocation name
 
-module load apptainer cuda/11.8.0 cudnn/8.9.7
-# module load cuda/10.2.89
+module load apptainer conda cuda/12.4.1 cudnn
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
 # __conda_setup="$('/sfs/applications/202406_build/software/standard/core/miniforge/24.3.0-py3.11/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 # if [ $? -eq 0 ]; then
 #     eval "$__conda_setup"
@@ -26,20 +25,13 @@ module load apptainer cuda/11.8.0 cudnn/8.9.7
 #     fi
 # fi
 # unset __conda_setup
-# <<< conda initialize <<<
-
-#conda activate mvdnet2
-#export CUDA_HOME=/apps/software/standard/core/cuda/10.2.89
-
-#apptainer run --bind /apps/software/standard/core/cuda/11.8.0:/usr/local/cuda --bind .:/mvdnet --nv /home/jmz9sad/mvdnet2.sif \
-
-apptainer run --nv /home/jmz9sad/mvdnet2.sif ./train_only_job.sh
-
-# pip install -U git+https://github.com/qiank10/detectron2.git@alt-0.1.1
-# cd ~/MVDNet ; pip install -U -e .
+# # <<< conda initialize <<<
 # 
-# nvidia-smi
+# conda activate mvdnet3
 # 
+
+apptainer run --nv apptainer/mvdnet4.sif ./train_only_job.sh
+# pip install -r requirements.txt
+# pip install -e detectron2
+# pip install -e .
 # python ./tools/train.py --config ./configs/train_config.yaml
-
-

@@ -186,19 +186,16 @@ class VGG(Backbone):
         return output_shapes
 
 class MVDNetBackbone(Backbone):
-    def __init__(self, radar_backbone, lidar_backbone):
+    def __init__(self, radar_backbone):
         super(MVDNetBackbone, self).__init__()
         self.radar_backbone = radar_backbone
-        self.lidar_backbone = lidar_backbone
 
-    def forward(self, radar_data, lidar_data):
+    def forward(self, radar_data):
         radar_features = self.radar_backbone(radar_data)
-        lidar_features = self.lidar_backbone(lidar_data)
 
-        features = {"radar_rpn":radar_features["rpn"], 
-            "radar_rcnn":radar_features["rcnn"],
-            "lidar_rpn":lidar_features["rpn"],
-            "lidar_rcnn":lidar_features["rcnn"]}
+        features = {
+            "radar_rpn":radar_features["rpn"], 
+            "radar_rcnn":radar_features["rcnn"]}
 
         return features
 
@@ -209,12 +206,6 @@ class MVDNetBackbone(Backbone):
             ),
             "radar_rcnn": ShapeSpec(
                 channels=self.radar_backbone.out_channels_per_stage[0], stride=self.radar_backbone.stem.stride
-            ),
-            "lidar_rpn": ShapeSpec(
-                channels=self.lidar_backbone.out_channels_per_stage[0], stride=self.lidar_backbone.stem.stride
-            ),
-            "lidar_rcnn": ShapeSpec(
-                channels=self.lidar_backbone.out_channels_per_stage[0], stride=self.lidar_backbone.stem.stride
             )
         }
         return output_shapes
@@ -224,16 +215,9 @@ def build_mvdnet_backbone(cfg, input_shape: ShapeSpec):
     stem_out_channels = cfg.MODEL.MVDNET.STEM_OUT_CHANNELS
     stage_layers = cfg.MODEL.MVDNET.STAGE_LAYERS
     radar_stage_out_channels = cfg.MODEL.MVDNET.RADAR_STAGE_OUT_CHANNELS
-    lidar_stage_out_channels = cfg.MODEL.MVDNET.LIDAR_STAGE_OUT_CHANNELS
     radar_norm = cfg.MODEL.MVDNET.RADAR_NORM
-    lidar_norm = cfg.MODEL.MVDNET.LIDAR_NORM
     num_history = cfg.INPUT.NUM_HISTORY+1
     history_on = cfg.INPUT.HISTORY_ON
-
-    lidar_channels = np.int32(np.round(
-        (cfg.INPUT.LIDAR.PROJECTION.HEIGHT_UB 
-        - cfg.INPUT.LIDAR.PROJECTION.HEIGHT_LB)
-        / cfg.INPUT.LIDAR.PROJECTION.DELTA_H))+1
 
     radar_backbone = VGG(
         in_channels=1,
@@ -245,18 +229,7 @@ def build_mvdnet_backbone(cfg, input_shape: ShapeSpec):
         num_history=num_history
     )
 
-    lidar_backbone = VGG(
-        in_channels=lidar_channels,
-        stem_out_channels=stem_out_channels,
-        norm=lidar_norm,
-        num_layers_per_stage=stage_layers,
-        out_channels_per_stage=lidar_stage_out_channels,
-        history_on=history_on,
-        num_history=num_history
-    )
-
     backbone = MVDNetBackbone(
-        radar_backbone,
-        lidar_backbone
+        radar_backbone
     )
     return backbone

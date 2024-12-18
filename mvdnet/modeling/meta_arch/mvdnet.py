@@ -29,13 +29,13 @@ class MVDNet(nn.Module):
         if not self.training:
             return self.inference(batched_inputs)
 
-        radar_data, lidar_data = self.preprocess_image(batched_inputs)
+        radar_data = self.preprocess_image(batched_inputs)
         if "instances" in batched_inputs[0]:
             gt_instances = [x["instances"].to(self.device) for x in batched_inputs]
         else:
             gt_instances = None
 
-        features = self.backbone(radar_data.tensor, lidar_data.tensor)
+        features = self.backbone(radar_data.tensor)
 
         if self.proposal_generator:
             proposals, proposal_losses = self.proposal_generator(radar_data, features, gt_instances)
@@ -54,8 +54,8 @@ class MVDNet(nn.Module):
     def inference(self, batched_inputs, detected_instances=None, do_postprocess=True):
         assert not self.training
 
-        radar_data, lidar_data = self.preprocess_image(batched_inputs)
-        features = self.backbone(radar_data.tensor, lidar_data.tensor)
+        radar_data = self.preprocess_image(batched_inputs)
+        features = self.backbone(radar_data.tensor)
 
         if detected_instances is None:
             if self.proposal_generator:
@@ -78,15 +78,9 @@ class MVDNet(nn.Module):
             return results
 
     def preprocess_image(self, batched_inputs):
-        if self.history_on:
-            radar_data = [torch.stack(x["radar_intensity"]).to(self.device).type(torch.float) for x in batched_inputs]
-            lidar_data = [torch.cat([torch.stack(x["lidar_intensity"]), torch.stack(x["lidar_occupancy"])], dim=1).to(self.device).type(torch.float) for x in batched_inputs]
-        else:
-            radar_data = [x["radar_intensity"].to(self.device).type(torch.float) for x in batched_inputs]
-            lidar_data = [torch.cat([x["lidar_intensity"], x["lidar_occupancy"]], dim=0).to(self.device).type(torch.float) for x in batched_inputs]
+        radar_data = [x["radar_intensity"].to(self.device).type(torch.float) for x in batched_inputs]
         radar_data = ImageList.from_tensors(radar_data, self.backbone.size_divisibility)
-        lidar_data = ImageList.from_tensors(lidar_data, self.backbone.size_divisibility)
-        return radar_data, lidar_data
+        return radar_data
 
     @staticmethod
     def _postprocess(instances, proposals, batched_inputs, image_sizes):

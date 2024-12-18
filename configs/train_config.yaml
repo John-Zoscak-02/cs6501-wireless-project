@@ -24,9 +24,7 @@ MODEL:
     STEM_OUT_CHANNELS: 32
     STAGE_LAYERS: [3,3]
     RADAR_STAGE_OUT_CHANNELS: [32,64]
-    LIDAR_STAGE_OUT_CHANNELS: [64,128]
     RADAR_NORM: "BN"
-    LIDAR_NORM: "BN"
   ANCHOR_GENERATOR:
     NAME: RotatedAnchorGenerator
     ANGLES: [[-90, -45, 0, 45]]
@@ -37,7 +35,7 @@ MODEL:
     MIN_SIZE: 2
   RPN:
     BBOX_REG_WEIGHTS: (1,1,1,1,1)
-    IN_FEATURES: ["radar_rpn", "lidar_rpn"]
+    IN_FEATURES: ["radar_rpn"]
     PRE_NMS_TOPK_TRAIN: 6000
     PRE_NMS_TOPK_TEST: 3000
     POST_NMS_TOPK_TRAIN: 1000
@@ -45,7 +43,7 @@ MODEL:
     IOU_THRESHOLDS: [0.45, 0.55]
   ROI_HEADS:
     NAME: MVDNetROIHeads
-    IN_FEATURES: ["radar_rcnn", "lidar_rcnn"]
+    IN_FEATURES: ["radar_rcnn"]
     BATCH_SIZE_PER_IMAGE: 256
     NUM_CLASSES: 1
     NMS_THRESH_TEST: 0.2

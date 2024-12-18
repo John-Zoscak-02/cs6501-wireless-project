@@ -194,7 +194,6 @@ MODEL:
     BATCH_SIZE_PER_IMAGE: 256
     IN_FEATURES:
     - radar_rcnn
-    - lidar_rcnn
     IOU_LABELS:
     - 0
     - 1
@@ -245,7 +244,6 @@ MODEL:
     HEAD_NAME: StandardRPNHead
     IN_FEATURES:
     - radar_rpn
-    - lidar_rpn
     IOU_LABELS:
     - 0
     - -1

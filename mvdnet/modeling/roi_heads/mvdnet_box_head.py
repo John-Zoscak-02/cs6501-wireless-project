@@ -62,7 +62,7 @@ class MVDNetBoxHead(nn.Module):
 
         radar_x = torch.flatten(radar_features, start_dim=1)
         radar_x = self.radar_self_attention(radar_x)
-        feature_x = radar_x
+        feature_x = radar_x.unsqueeze(0).unsqueeze(0)
         feature_x = self.tnn(feature_x)
         fusion_feature = torch.flatten(feature_x, start_dim=1)
         

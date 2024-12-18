@@ -1,5 +1,5 @@
 Bootstrap: docker
-    From: pytorch/pytorch:2.3.1-cuda11.8-cudnn8-devel
+    From: pytorch/pytorch:2.4.1-cuda12.4-cudnn9-devel
 
 %environment
     export TZ=America/New_York

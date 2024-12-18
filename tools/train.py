@@ -19,7 +19,7 @@ class Trainer(DefaultTrainer):
     def build_evaluator(cls, cfg, dataset_name):
         evaluator_type = MetadataCatalog.get(dataset_name).evaluator_type
         assert evaluator_type == "robotcar", "The evaluator type is not supported."
-        return RobotcarEvaluator(dataset_name, cfg, True)
+        return RobotCarEvaluator(dataset_name, cfg, True)
 
     @classmethod
     def build_test_loader(cls, cfg, dataset_name):

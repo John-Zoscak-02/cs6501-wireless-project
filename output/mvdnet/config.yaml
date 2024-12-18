@@ -25,7 +25,7 @@ INPUT:
     TYPE: relative_range
   EVAL_BETA: 0.0
   FORMAT: BGR
-  HISTORY_ON: true
+  HISTORY_ON: false
   LIDAR:
     FOG:
       BETA_RANGE:
@@ -274,7 +274,7 @@ MODEL:
     NAME: SemSegFPNHead
     NORM: GN
     NUM_CLASSES: 54
-  WEIGHTS: ''
+  WEIGHTS: ./output/mvdnet/model_final.pth
 OUTPUT_DIR: ./output/mvdnet/
 SEED: -1
 SOLVER:

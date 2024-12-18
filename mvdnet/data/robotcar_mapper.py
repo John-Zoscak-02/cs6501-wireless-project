@@ -91,7 +91,11 @@ class RobotCarMapper:
                 if self.mode == "train":
                     lidar_history_path = os.path.join(data_root, "lidar_history")
                     lidar_history_name = os.path.join(lidar_history_path, timestamp+'_'+str(i)+'.bin')
-                    lidar_history_data = np.fromfile(lidar_history_name, dtype=np.float32)
+                    try:
+                        lidar_history_data = np.fromfile(lidar_history_name, dtype=np.float32)
+                    except FileNotFoundError:
+                        logging.error(f"File {lidar_history_name} not found.")
+                        continue
                     lidar_history_data = lidar_history_data.reshape((-1, 4))
                     lidar_history_T_name = os.path.join(lidar_history_path, timestamp+'_'+str(i)+'_T.bin')
                     lidar_history_T = np.fromfile(lidar_history_T_name, dtype=np.float32)

@@ -32,7 +32,7 @@ class MVDNetBoxHead(nn.Module):
         self.radar_self_attention = SelfAttentionBlock(self.radar_output_size)
 
         self.tnn = Conv2d(
-            in_channels = self.radar_input_channels*2,
+            in_channels = self.radar_input_channels,
             out_channels = self.radar_input_channels,
             kernel_size = 3,
             padding = 1,
@@ -58,14 +58,12 @@ class MVDNetBoxHead(nn.Module):
             weight_init.c2_msra_fill(self.tnn)
 
     def forward(self, x):
-        radar_features = x[self.radar_key]
-
+        radar_features = x[self.radar_key]  # Only radar features
         radar_x = torch.flatten(radar_features, start_dim=1)
         radar_x = self.radar_self_attention(radar_x)
-        feature_x = radar_x.unsqueeze(0).unsqueeze(0)
-        feature_x = self.tnn(feature_x)
-        fusion_feature = torch.flatten(feature_x, start_dim=1)
-        
+        radar_x = radar_x.reshape(-1, self.radar_input_channels, self.pooler_size, self.pooler_size)
+        fusion_feature = self.tnn(radar_x)  # Single input now
+        fusion_feature = torch.flatten(fusion_feature, start_dim=1)
         for layer in self.fcs:
             fusion_feature = F.leaky_relu_(layer(fusion_feature))
         return fusion_feature
